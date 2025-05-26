@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url('logo.JPG') no-repeat center center fixed;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: #f7f7f7;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: -1;
+}
+
+/* Cabeçalho */
+header {
+  background-color: #004080;
+  color: white;
+  padding: 1rem;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+nav h1 {
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #ffd700;
+}
+
+/* Secção principal */
+.hero {
+  text-align: center;
+  padding: 4rem 1rem;
+  background: linear-gradient(to right, #004080, #0073e6);
+  color: white;
+}
+
+.botao {
+  display: inline-block;
+  margin-top: 1rem;
+  background-color: white;
+  color: #004080;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+/* Rodapé */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #e0e0e0;
+  margin-top: 2rem;
+}
+
+footer a {
+  color: #004080;
+  text-decoration: none;
+}
+
+footer .social-icons {
+  margin-top: 0.5rem;
+}
+
+footer .social-icons a {
+  display: inline-block;
+  margin: 0 8px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+footer .social-icons a:hover {
+  opacity: 1;
+}
+
+/* Secção do Instagram */
+.instagram-feed {
+  padding: 2rem 1rem;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.instagram-feed h2 {
+  margin-bottom: 1rem;
+  color: #004080;
+}
+
+/* Contador */
+#countdown {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.85);
+  color: #004080;
+  padding: 1rem;
+  border-radius: 8px;
+  display: inline-block;
+}

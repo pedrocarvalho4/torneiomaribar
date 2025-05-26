@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <link rel="icon" type="image/jpeg" href="logo.JPG">
+
+  <meta charset="UTF-8">
+  <title>Calendários & Resultados - Torneio de Voleibol</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      margin: 0;
+    }
+
+    nav {
+      background-color: #004080;
+      color: white;
+      padding: 1rem;
+    }
+
+    nav h1 {
+      margin: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+    }
+
+    label,
+    button {
+      margin-right: 15px;
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background: #eee;
+    }
+
+    #avisoFiltro {
+      color: red;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav>
+      <h1 style="display: flex; align-items: center; gap: 10px;">
+        <img src="logo.JPG" alt="Logótipo" width="32" height="32" style="border-radius: 50%;">
+        Torneio Maribar
+      </h1>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="sobre-nos.html">Sobre Nós</a></li>
+        <li><a href="edicoes-passadas.html">Edições Passadas</a></li>
+        <li><a href="informacoes.html">Informações & Inscrições</a></li>
+        <li><a href="calendarios.html">Calendários & Resultados</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <h1>Jogos (Todos os Campos)</h1>
+  <p style="color: #444; font-weight: bold; margin-top: 10px;">
+    ℹ️ Para uma melhor visualização, rode o telemóvel para modo horizontal.
+  </p>
+
+  <div>
+    <label>Tipo (N.º J.):
+      <select id="filtroTipo">
+        <option value="">Todos</option>
+        <option value="MAS">Masculino</option>
+        <option value="FEM">Feminino</option>
+        <option value="MIX">Mistos</option>
+        <option value="sub-16">sub-16</option>
+      </select>
+    </label>
+
+    <label>Equipa A / B contém:
+      <input type="text" id="filtroEquipa" placeholder="ex: Dupla 1" />
+    </label>
+
+    <button id="btnFiltrar">Aplicar Filtros</button>
+  </div>
+
+  <div id="avisoFiltro"></div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>N.º J.</th>
+        <th>Dia</th>
+        <th>Hora</th>
+        <th>Campo</th>
+        <th>Equipa A</th>
+        <th></th>
+        <th>X</th>
+        <th></th>
+        <th>Equipa B</th>
+      </tr>
+    </thead>
+    <tbody id="tabela"></tbody>
+  </table>
+
+  <script>
+    const sheetID = '1W7vYayCEYez1C1DhuVTb5EyxEbZoZUXAdAEXjL411MI';
+    const abas = [
+      {nome: 'Campo 1', gid: '0'},
+      {nome: 'Campo 2', gid: '1748251367'},
+      {nome: 'Campo 3', gid: '88718845'},
+      {nome: 'Campo 4', gid: '1262552338'},
+      {nome: 'Campo 5', gid: '691995695'},
+      {nome: 'Campo 6', gid: '1559184801'},
+      {nome: 'Campo 7', gid: '820424930'},
+      {nome: 'Campo 8', gid: '236323837'},
+      {nome: 'Campo 9', gid: '679884945'},
+      {nome: 'Campo 10', gid: '537214771'},
+      {nome: 'Campo 11', gid: '1443533077'},
+      {nome: 'Campo 12', gid: '869322168'},
+      {nome: 'Campo 13', gid: '1124916512'},
+      {nome: 'Campo 14', gid: '910840754'},
+      {nome: 'Campo 15', gid: '366928501'},
+      {nome: 'Campo 16', gid: '1037370305'},
+      {nome: 'Campo 17', gid: '434958283'},
+      {nome: 'Campo 18', gid: '1201144106'},
+      {nome: 'Campo 19', gid: '460027017'},
+      {nome: 'Campo 20', gid: '227897224'},
+      {nome: 'Campo 21', gid: '1076126343'}
+    ];
+
+    let allRows = [];
+
+    function fetchAba(aba, onComplete) {
+      const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&gid=${aba.gid}`;
+      fetch(url)
+        .then(res => res.text())
+        .then(text => {
+          const json = JSON.parse(text.substring(47).slice(0, -2));
+          json.table.rows.forEach(r => {
+            r.c.push({v: aba.nome});
+            allRows.push(r);
+          });
+          onComplete();
+        })
+        .catch(e => {
+          console.error('Erro a ler ' + aba.nome, e);
+          onComplete();
+        });
+    }
+
+    function fetchTodas() {
+      let count = 0;
+      abas.forEach(aba => {
+        fetchAba(aba, () => {
+          count++;
+          if (count === abas.length) {
+            document.getElementById('btnFiltrar').disabled = false;
+            renderTable();
+          }
+        });
+      });
+    }
+
+    function formatarHora(cell) {
+      if (!cell || !cell.v) return '';
+      const match = /Date\((\d+),(\d+),(\d+),(\d+),(\d+)/.exec(cell.v);
+      if (!match) return cell.v;
+      const hora = String(match[4]).padStart(2, '0');
+      const minuto = String(match[5]).padStart(2, '0');
+      return `${hora}:${minuto}`;
+    }
+
+    function renderTable() {
+      const tipoFiltro = document.getElementById('filtroTipo').value.trim().toUpperCase();
+      const equipaFiltro = document.getElementById('filtroEquipa').value.trim().toLowerCase();
+      const tbody = document.getElementById('tabela');
+      const aviso = document.getElementById('avisoFiltro');
+      tbody.innerHTML = '';
+      aviso.textContent = '';
+
+      let linhasFiltradas = [];
+
+      allRows.forEach(row => {
+        const numJ = row.c[0]?.v || '';
+        const dia = row.c[1]?.v || '';
+        const hora = formatarHora(row.c[2]);
+        const campoNome = row.c[row.c.length - 1]?.v || '';
+        const equipaA = row.c[4]?.v || '';
+        const equipaB = row.c[8]?.v || '';
+
+        const matchTipo = !tipoFiltro || numJ.toUpperCase().includes(tipoFiltro);
+        const matchEquipa =
+          !equipaFiltro ||
+          equipaA.toLowerCase().includes(equipaFiltro) ||
+          equipaB.toLowerCase().includes(equipaFiltro);
+
+        if (matchTipo && matchEquipa) {
+          linhasFiltradas.push([numJ, dia, hora, campoNome, equipaA, '', 'X', '', equipaB]);
+        }
+      });
+
+      const limite = 20;
+      linhasFiltradas.sort((a, b) => {
+        const diaA = parseInt(a[1]) || 0;
+        const diaB = parseInt(b[1]) || 0;
+        const horaA = a[2].split(':').map(Number);
+        const horaB = b[2].split(':').map(Number);
+        if (diaA !== diaB) return diaA - diaB;
+        if (horaA[0] !== horaB[0]) return horaA[0] - horaB[0];
+        return horaA[1] - horaB[1];
+      });
+
+      const mostrarLinhas = linhasFiltradas.slice(0, limite);
+
+      mostrarLinhas.forEach(cols => {
+        const tr = document.createElement('tr');
+        cols.forEach(text => {
+          const td = document.createElement('td');
+          td.textContent = text;
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+
+      if (linhasFiltradas.length > limite) {
+        aviso.textContent = `⚠️ Foram encontrados ${linhasFiltradas.length} jogos, mas só os primeiros ${limite} estão a ser mostrados. Refine os filtros para ver resultados mais específicos.`;
+      }
+
+      console.log(`[INFO] Filtro aplicado: tipo='${tipoFiltro}', equipa='${equipaFiltro}' (${linhasFiltradas.length} resultados)`);
+    }
+
+    document.getElementById('btnFiltrar').addEventListener('click', () => {
+      console.log('[INFO] Botão "Aplicar Filtros" clicado');
+      renderTable();
+    });
+
+    document.getElementById('btnFiltrar').disabled = true;
+    fetchTodas();
+  </script>
+</body>
+<footer>
+  <p>&copy; Torneio de Voleibol de Praia no Maribar | Contacto: <a
+      href="mailto:pedrofacarvalho@gmail.com">pedrofacarvalho@gmail.com</a></p>
+  <div class="social-icons">
+    <a href="https://www.facebook.com/profile.php?id=100093335237350" target="_blank" aria-label="Facebook">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="24"
+        height="24">
+    </a>
+    <a href="https://www.instagram.com/torneiomaribarvolley?igsh=NncxcXVhNWp2OTh6" target="_blank"
+      aria-label="Instagram">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="24"
+        height="24">
+    </a>
+  </div>
+</footer>
+
+</html>
