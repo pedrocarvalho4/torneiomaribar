@@ -177,3 +177,8 @@ footer .social-icons a:hover {
     display: block;
   }
 }
+.conteudo {
+  padding: 2rem 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
