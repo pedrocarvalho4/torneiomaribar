@@ -2,82 +2,24 @@
 <html lang="pt">
 
 <head>
-  <link rel="icon" type="image/jpeg" href="logo.JPG">
-
   <meta charset="UTF-8">
-  <title>Calendários & Resultados - Torneio de Voleibol</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 20px;
-      margin: 0;
-    }
-
-    nav {
-      background-color: #004080;
-      color: white;
-      padding: 1rem;
-    }
-
-    nav h1 {
-      margin: 0;
-    }
-
-    nav ul {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-    }
-
-    label,
-    button {
-      margin-right: 15px;
-      margin-top: 10px;
-      display: inline-block;
-    }
-
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin-top: 20px;
-    }
-
-    th,
-    td {
-      border: 1px solid #aaa;
-      padding: 8px;
-      text-align: left;
-    }
-
-    th {
-      background: #eee;
-    }
-
-    #avisoFiltro {
-      color: red;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-  </style>
+  <title>Calendários & Resultados - Torneio Maribar</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="stylesheet.css">
 </head>
 
 <body>
-
   <header>
     <nav>
       <h1 style="display: flex; align-items: center; gap: 10px;">
         <img src="logo.JPG" alt="Logótipo" width="32" height="32" style="border-radius: 50%;">
         Torneio Maribar
       </h1>
-      <ul>
+
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+      <ul id="nav-menu">
         <li><a href="index.html">Início</a></li>
         <li><a href="sobre-nos.html">Sobre Nós</a></li>
         <li><a href="edicoes-passadas.html">Edições Passadas</a></li>
@@ -87,7 +29,6 @@
     </nav>
   </header>
 
-  
   <section class="submenu">
     <h1>Calendários e Resultados</h1>
     <h3>Selecione o Torneio que pretende ver:</h3>
@@ -279,6 +220,12 @@
 
     document.getElementById('btnFiltrar').disabled = true;
     fetchTodas();
+  </script>
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("nav-menu");
+      menu.classList.toggle("active");
+    }
   </script>
 </body>
 <footer>
