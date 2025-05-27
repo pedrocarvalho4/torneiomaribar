@@ -63,6 +63,10 @@
     <label>Equipa A / B contém:
       <input type="text" id="filtroEquipa" placeholder="ex: Dupla 1" />
     </label>
+    <label>
+      <input type="checkbox" id="filtroPorRealizar" checked>
+      Mostrar apenas jogos por realizar
+    </label>
 
     <button id="btnFiltrar">Aplicar Filtros</button>
   </div>
@@ -157,6 +161,8 @@
     function renderTable() {
       const tipoFiltro = document.getElementById('filtroTipo').value.trim().toUpperCase();
       const equipaFiltro = document.getElementById('filtroEquipa').value.trim().toLowerCase();
+      const mostrarPorRealizar = document.getElementById('filtroPorRealizar').checked;
+
       const tbody = document.getElementById('tabela');
       const aviso = document.getElementById('avisoFiltro');
       tbody.innerHTML = '';
@@ -178,8 +184,28 @@
           equipaA.toLowerCase().includes(equipaFiltro) ||
           equipaB.toLowerCase().includes(equipaFiltro);
 
-        if (matchTipo && matchEquipa) {
-          linhasFiltradas.push([numJ, dia, hora, campoNome, equipaA, '', 'X', '', equipaB]);
+        let incluir = matchTipo && matchEquipa;
+
+        if (incluir && mostrarPorRealizar) {
+          const posicaoA = row.c[5]?.v?.toString().trim() || "";
+          const posicaoB = row.c[7]?.v?.toString().trim() || "";
+          if (posicaoA !== "" || posicaoB !== "") {
+            incluir = false;
+          }
+        }
+
+        if (incluir) {
+          linhasFiltradas.push([
+            numJ,
+            dia,
+            hora,
+            campoNome,
+            equipaA,
+            row.c[5]?.v || '', // Coluna F - resultado equipa A
+            'X',
+            row.c[7]?.v || '', // Coluna H - resultado equipa B
+            equipaB
+          ]);
         }
       });
 
@@ -213,6 +239,8 @@
       console.log(`[INFO] Filtro aplicado: tipo='${tipoFiltro}', equipa='${equipaFiltro}' (${linhasFiltradas.length} resultados)`);
     }
 
+
+
     document.getElementById('btnFiltrar').addEventListener('click', () => {
       console.log('[INFO] Botão "Aplicar Filtros" clicado');
       renderTable();
@@ -220,8 +248,14 @@
 
     document.getElementById('btnFiltrar').disabled = true;
     fetchTodas();
-  </script>
-  <script>
+
+    document.getElementById('filtroTipo').addEventListener('change', () => {
+      renderTable();
+    });
+
+    document.getElementById('filtroPorRealizar').addEventListener('change', () => {
+      renderTable();
+    });
     function toggleMenu() {
       const menu = document.getElementById("nav-menu");
       menu.classList.toggle("active");
