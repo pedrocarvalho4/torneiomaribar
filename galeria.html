@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galeria de Fotos - Torneio Maribar</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .galeria-grid img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease;
+    }
+
+    .galeria-grid a:hover img {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <h1 style="display: flex; align-items: center; gap: 10px;">
+        <img src="logo.JPG" alt="Logótipo" width="32" height="32" style="border-radius: 50%;">
+        Torneio Maribar
+      </h1>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <ul id="nav-menu">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="sobre-nos.html">Sobre Nós</a></li>
+        <li><a href="edicoes-passadas.html">Edições Passadas</a></li>
+        <li><a href="informacoes.html">Informações & Inscrições</a></li>
+        <li><a href="calendarios.html">Calendários & Resultados</a></li>
+        <li><a href="galeria.html">Galeria de Fotos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="conteudo">
+    <h2>Galeria de Fotos</h2>
+    <p>Clica numa imagem para ver o álbum completo no Google Photos:</p>
+
+    <div class="galeria-grid">
+      <a href="https://photos.app.goo.gl/fEXzmdKYdp9gZvLf7" target="_blank">
+        <img src="fotos2022.jpg" alt="Fotos 2022">
+      </a>
+      <a href="https://photos.app.goo.gl/bPjnK9YMF6nGyUDg6" target="_blank">
+        <img src="fotos2023.jpg" alt="Fotos 2023">
+      </a>
+      <a href="https://photos.app.goo.gl/hp8fLvz1LyTehZ4a7" target="_blank">
+        <img src="fotos2024s.jpg" alt="Fotos 2024 - Sábado">
+      </a>
+      <a href="https://photos.app.goo.gl/NF27oLehUX7MmNJx8" target="_blank">
+        <img src="fotos2024d.jpg" alt="Fotos 2024 - Domingo">
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; Torneio de Voleibol de Praia no Maribar | Contacto: <a href="mailto:pedrofacarvalho@gmail.com">pedrofacarvalho@gmail.com</a></p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profile.php?id=100093335237350" target="_blank" aria-label="Facebook">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="24">
+      </a>
+      <a href="https://www.instagram.com/torneiomaribarvolley?igsh=NncxcXVhNWp2OTh6" target="_blank" aria-label="Instagram">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="24">
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("nav-menu");
+      menu.classList.toggle("active");
+    }
+  </script>
+</body>
+</html>
