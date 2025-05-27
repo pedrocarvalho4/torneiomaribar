@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <link rel="icon" type="image/jpeg" href="logo.JPG">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Edições Passadas - Torneio Maribar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+
+<header>
+  <nav>
+    <h1 style="display: flex; align-items: center; gap: 10px;">
+      <img src="logo.JPG" alt="Logótipo" width="32" height="32" style="border-radius: 50%;">
+      Torneio Maribar
+    </h1>
+    <ul>
+      <li><a href="index.html">Início</a></li>
+      <li><a href="sobre-nos.html">Sobre Nós</a></li>
+      <li><a href="edicoes-passadas.html">Edições Passadas</a></li>
+      <li><a href="informacoes.html">Informações & Inscrições</a></li>
+      <li><a href="calendarios.html">Calendários & Resultados</a></li>
+    </ul>
+  </nav>
+</header>
+
+<body>
+  <main>
+    <section class="conteudo">
+      <h2>Torneio Masculino</h2>
+
+
+      <h3>Duplas Inscritas <span id="total-duplas" style="font-weight: normal;"></span></h3>
+      <ul id="duplas-list"></ul>
+
+      <script>
+        const sheetId = "1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0";
+        const gid = "1135744744";
+
+        const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&gid=${gid}`;
+
+        fetch(url)
+          .then(res => res.text())
+          .then(text => {
+            const json = JSON.parse(text.substring(47).slice(0, -2));
+            const duplasList = document.getElementById("duplas-list");
+            const totalSpan = document.getElementById("total-duplas");
+
+            // Tentar ir buscar o valor da célula F1 (linha 0, coluna 5)
+            const totalDuplas = json.table.rows[0]?.c[5]?.v;
+            if (totalDuplas) {
+              totalSpan.textContent = `(${totalDuplas} duplas inscritas)`;
+            }
+
+            json.table.rows.forEach(row => {
+              const numero = row.c[0]?.v;
+              const atleta1 = row.c[1]?.v || "";
+              const atleta2 = row.c[2]?.v || "";
+
+              if (!numero) return; // parar se a coluna A estiver vazia
+
+              const li = document.createElement("li");
+              li.textContent = `${atleta1} / ${atleta2}`;
+              duplasList.appendChild(li);
+            });
+          })
+          .catch(e => {
+            document.getElementById("duplas-list").innerHTML = "<li>Erro ao carregar as duplas.</li>";
+            console.error(e);
+          });
+      </script>
+
+
+      <h3>Quadro Competitivo</h3>
+      <button onclick="mostrarFase('fase1')">1.ª Fase</button>
+      <button onclick="mostrarFase('fase2')">2.ª Fase</button>
+
+      <div id="fase1" class="fase">
+        <iframe
+          src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRUIEENURtuEJ52Jr4OjMiNwX44zq7oUaX-dx_KZ7dTWLN2FTh1OmHXznFTWxCRkPTz6Uol-KmK6_pt/pubhtml?gid=2067354137&single=true"
+          width="100%" height="600" style="border:1px solid #ccc;"></iframe>
+      </div>
+
+      <div id="fase2" class="fase" style="display:none">
+        <iframe
+          src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRUIEENURtuEJ52Jr4OjMiNwX44zq7oUaX-dx_KZ7dTWLN2FTh1OmHXznFTWxCRkPTz6Uol-KmK6_pt/pubhtml?gid=1992541591&single=true"
+          width="100%" height="600" style="border:1px solid #ccc;"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; Torneio de Voleibol de Praia no Maribar | Contacto: <a
+        href="mailto:pedrofacarvalho@gmail.com">pedrofacarvalho@gmail.com</a></p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profile.php?id=100093335237350" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="24">
+      </a>
+      <a href="https://www.instagram.com/torneiomaribarvolley?igsh=NncxcXVhNWp2OTh6" target="_blank">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="24">
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    function mostrarFase(fase) {
+      document.getElementById('fase1').style.display = (fase === 'fase1') ? 'block' : 'none';
+      document.getElementById('fase2').style.display = (fase === 'fase2') ? 'block' : 'none';
+    }
+  </script>
+</body>
+
+</html>
