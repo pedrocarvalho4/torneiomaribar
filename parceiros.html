@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parceiros - Torneio Maribar</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .parceiros {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .parceiros h2 {
+      margin-bottom: 1rem;
+      color: #004080;
+    }
+
+    .parceiros-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      align-items: center;
+      justify-items: center;
+      padding-top: 2rem;
+    }
+
+    .parceiros-grid a img {
+      max-width: 200px;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .parceiros-grid a:hover img {
+      transform: scale(1.05);
+    }
+
+    .parceiros-principal {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <h1 style="display: flex; align-items: center; gap: 10px;">
+        <img src="logo.JPG" alt="Logótipo" width="32" height="32" style="border-radius: 50%;">
+        Torneio Maribar
+      </h1>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <ul id="nav-menu">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="sobre-nos.html">Sobre Nós</a></li>
+        <li><a href="edicoes-passadas.html">Edições Passadas</a></li>
+        <li><a href="informacoes.html">Informações & Inscrições</a></li>
+        <li><a href="calendarios.html">Calendários & Resultados</a></li>
+        <li><a href="galeria.html">Galeria de Fotos</a></li>
+        <li><a href="regulamento.html">Regulamento</a></li>
+        <li><a href="parceiros.html">Parceiros</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="parceiros">
+    <h2>Parceiros do Torneio</h2>
+    <p class="parceiros-principal">Parceiro Principal</p>
+    <div class="parceiros-grid">
+      <a href="https://www.instagram.com/maribartorreira?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+        <img src="p_maribar.png" alt="Maribar" style="max-width: 600px; width: 100%;">
+      </a>
+    </div>
+
+    <p class="parceiros-principal">Outros Parceiros</p>
+    <div class="parceiros-grid">
+      <a href="https://www.instagram.com/avenida_praia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+        <img src="p_avenida.png" alt="Restaurante Avenida da Praia">
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; Torneio de Voleibol de Praia no Maribar | Contacto: <a href="mailto:pedrofacarvalho@gmail.com">pedrofacarvalho@gmail.com</a></p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profile.php?id=100093335237350" target="_blank" aria-label="Facebook">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="24">
+      </a>
+      <a href="https://www.instagram.com/torneiomaribarvolley?igsh=NncxcXVhNWp2OTh6" target="_blank" aria-label="Instagram">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="24">
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("nav-menu");
+      menu.classList.toggle("active");
+    }
+  </script>
+</body>
+</html>
