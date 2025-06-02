@@ -1,0 +1,33 @@
+name: Capturar Screenshots
+
+on:
+  schedule:
+    - cron: '*/2 * * * *' # de 2 em 2 minutos
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v3
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Executar captura
+        run: npm start
+
+      - name: Fazer commit das imagens
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add img/
+          git commit -m '📸 Atualizar screenshots automáticas' || echo 'Sem alterações'
+          git push
