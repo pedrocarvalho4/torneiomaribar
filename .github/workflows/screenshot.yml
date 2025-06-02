@@ -2,7 +2,7 @@ name: Capturar Screenshots
 
 on:
   schedule:
-    - cron: '*/6 * * * *' # de 2 em 2 minutos
+    - cron: '*/2 * * * *'  # de 2 em 2 minutos
   workflow_dispatch:
 
 jobs:
@@ -22,13 +22,13 @@ jobs:
         run: npm install
 
       - name: Executar captura
-        run: npm start
+        run: node screenshot.js
 
-     - name: Fazer commit das imagens
-      run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@github.com'
-        git add img/
-        git commit -m '📸 Atualizar screenshots automáticas' || echo 'Sem alterações'
-        git push
-
+      - name: Fazer commit das imagens e HTML
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git pull --rebase
+          git add img/ apresentacao.html || true
+          git commit -m '📸 Atualizar screenshots automáticas e HTML' || echo 'Sem alterações'
+          git push
