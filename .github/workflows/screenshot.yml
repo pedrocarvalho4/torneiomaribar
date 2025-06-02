@@ -26,8 +26,9 @@ jobs:
 
       - name: Fazer commit das imagens
         run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          git add img/
-          git commit -m '📸 Atualizar screenshots automáticas' || echo 'Sem alterações'
-          git push
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git pull --rebase
+        git add img/
+        git commit -m '📸 Atualizar screenshots automáticas' || echo 'Sem alterações'
+        git push
