@@ -28,7 +28,7 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          git pull --rebase
           git add img/ apresentacao.html || true
           git commit -m '📸 Atualizar screenshots automáticas e HTML' || echo 'Sem alterações'
+          git pull --rebase
           git push
