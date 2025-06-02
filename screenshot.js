@@ -25,7 +25,11 @@ const path = require('path');
 
   for (const folha of urls) {
     await page.goto(folha.url, { waitUntil: 'networkidle2' });
-    await page.setViewport({ width: 1920, height: 1080 });
+    //await page.setViewport({ width: 1920, height: 1080 });
+    await page.setViewport({ width: 2560, height: 1440 }); // simula ecrã grande
+await page.evaluate(() => {
+  document.body.style.zoom = '80%'; // reduz zoom do conteúdo para mostrar mais
+});
     await page.screenshot({ path: path.join(__dirname, `img/${folha.nome}.png`), fullPage: true });
     console.log(`✅ Screenshot: ${folha.nome}`);
   }
