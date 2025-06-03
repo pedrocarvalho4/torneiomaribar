@@ -37,7 +37,7 @@ const path = require('path');
       document.body.style.zoom = '85%';
     });
   }
-
+await page.waitForTimeout(5000);
   await page.screenshot({ path: path.join(__dirname, `img/${folha.nome}.png`), fullPage: true });
   console.log(`✅ Screenshot: ${folha.nome}`);
 }
