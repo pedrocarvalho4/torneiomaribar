@@ -27,7 +27,7 @@ const path = require('path');
   await page.goto(folha.url, { waitUntil: 'networkidle2' });
 
   if (folha.nome === "grupos_masc" || folha.nome === "grupos_mix") {
-    await page.setViewport({ width: 2650, height: 1400 });         // mais largo, menos alto
+    await page.setViewport({ width: 2700, height: 1400 });         // mais largo, menos alto
     await page.evaluate(() => {
       document.body.style.zoom = '75%';
     });
