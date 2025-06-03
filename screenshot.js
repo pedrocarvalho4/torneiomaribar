@@ -32,7 +32,7 @@ const path = require('path');
       document.body.style.zoom = '75%';
     });
   } else if (folha.nome === "2masc") {
-    await page.setViewport({ width: 2000, height: 2400 });        // mais estreito, mais alto
+    await page.setViewport({ width: 2000, height: 2800 });        // mais estreito, mais alto
     await page.evaluate(() => {
       document.body.style.zoom = '85%';
     });
