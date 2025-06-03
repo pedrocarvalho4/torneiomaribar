@@ -2,7 +2,7 @@ name: Capturar Screenshots
 
 on:
   schedule:
-    - cron: '*/2 * * * *'  # Corre de 2 em 2 minutos
+    - cron: '*/8 * * * *'  # Corre de 2 em 2 minutos
   workflow_dispatch:
 
 jobs:
