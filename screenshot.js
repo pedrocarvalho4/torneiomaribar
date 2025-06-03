@@ -37,7 +37,13 @@ const path = require('path');
       document.body.style.zoom = '85%';
     });
   }
-await page.waitForTimeout(5000);
+  await page.waitForFunction(() => {
+    return !document.body.innerText.includes("A carregar");
+  }, { timeout: 10000 }).catch(() => console.warn("⚠️ Timeout à espera do carregamento."));
+
+  // Espera adicional para garantir renderização completa
+  await page.waitForTimeout(3000);
+   
   await page.screenshot({ path: path.join(__dirname, `img/${folha.nome}.png`), fullPage: true });
   console.log(`✅ Screenshot: ${folha.nome}`);
 }
