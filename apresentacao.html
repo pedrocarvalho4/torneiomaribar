@@ -1,160 +1,82 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Carrossel Google Sheets</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apresentação ao Vivo - Torneio Maribar</title>
   <style>
-    html,
-    body {
+    html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      width: 100%;
-      font-family: Arial, sans-serif;
       background-color: #000;
+      font-family: sans-serif;
     }
 
-    .carousel-container {
+    .btn-container {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      width: 100%;
+      gap: 10px;
     }
 
-    .carousel {
-      flex-grow: 1;
-      width: 100%;
-      height: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .slide {
-      display: none;
-      width: 100%;
-      height: 100%;
-    }
-
-    .slide.active {
-      display: block;
+    .btn {
+      background-color: #004080;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
     }
 
     iframe {
+      border: none;
       width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 10px;
-      padding: 10px;
-      background: #111;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      color: white;
-      background-color: #333;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    button:hover {
-      background-color: #555;
+      height: 100vh;
     }
   </style>
 </head>
-
 <body>
 
-  <div class="carousel-container" id="carouselContainer">
-    <div class="carousel" id="carousel">
-
-      <!-- Grupos Masculino -->
-      <div class="slide active">
-        <iframe
-          src="https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=2067354137#gid=2067354137"></iframe>
-      </div>
-
-      <!-- 2ª Fase Masculino -->
-      <div class="slide">
-        <iframe
-          src="https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=1992541591#gid=1992541591"></iframe>
-      </div>
-
-      <!-- Grupos Feminino -->
-      <div class="slide">
-        <iframe
-          src="https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=381487257#gid=381487257"></iframe>
-      </div>
-
-      <!-- 2ª Fase Feminino -->
-      <div class="slide">
-        <iframe
-          src="https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=108382013#gid=108382013"></iframe>
-      </div>
-
-      <!-- Grupos Mistos -->
-      <div class="slide">
-        <iframe
-          src="https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=1057529267#gid=1057529267"></iframe>
-      </div>
-
-      <!-- 2ª Fase Mistos -->
-      <div class="slide">
-        <iframe
-          src="https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=109933911#gid=109933911"></iframe>
-      </div>
-
-    </div>
-
-
-    <div class="buttons">
-      <button onclick="prev()">◀ Anterior</button>
-      <button onclick="next()">Seguinte ▶</button>
-      <button onclick="toggleFullscreen()">🖵 Ecrã Inteiro</button>
-    </div>
+  <div class="btn-container">
+    <a href="calendarios.html" class="btn">⬅ Voltar aos Calendários</a>
+    <button class="btn" onclick="toggleFullScreen()">🔲 Fullscreen</button>
   </div>
 
+  <iframe id="sheetFrame" src="https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=2067354137&range=A1"></iframe>
+
   <script>
+    const links = [
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=2067354137&range=A1",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=1057529267&range=A1",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=381487257&range=A1",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=1992541591&range=A1",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=108382013&range=A1",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=1027930941&range=A1",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=1652358830&range=A1",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=299876945&range=A1"
+    ];
     let index = 0;
-    const slides = document.querySelectorAll('.slide');
 
-    function showSlide(n) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === n);
-      });
+    function updateIframe() {
+      document.getElementById("sheetFrame").src = links[index];
+      index = (index + 1) % links.length;
     }
 
-    function next() {
-      index = (index + 1) % slides.length;
-      showSlide(index);
-    }
+    setInterval(updateIframe, 30000);
 
-    function prev() {
-      index = (index - 1 + slides.length) % slides.length;
-      showSlide(index);
-    }
-
-    function toggleFullscreen() {
-      const elem = document.getElementById("carouselContainer");
+    function toggleFullScreen() {
       if (!document.fullscreenElement) {
-        elem.requestFullscreen().catch(err => alert(`Erro ao ativar ecrã inteiro: ${err.message}`));
+        document.documentElement.requestFullscreen();
       } else {
         document.exitFullscreen();
       }
     }
-
-    // ⏱️ Troca automática de slide a cada 10 segundos
-    setInterval(next, 30000);
   </script>
 
 </body>
-
 </html>
