@@ -182,3 +182,69 @@ footer .social-icons a:hover {
   max-width: 900px;
   margin: 0 auto;
 }
+.botoes {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.botao {
+  padding: 10px 20px;
+  min-width: 160px;
+  max-width: 200px;
+  text-align: center;
+  border: 1px solid #004080;
+  background-color: white;
+  color: #004080;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+  white-space: nowrap; /* impede quebra de linha dentro do botão */
+}
+
+.botao:hover {
+  background-color: #004080;
+  color: white;
+}
+
+.patrocinadores-carousel {
+  overflow: hidden;
+  padding: 2rem 0;
+  background-color: #f8f8f8;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 40px;
+  animation: deslizar 20s linear infinite;
+}
+
+.carousel-track img {
+  max-height: 80px;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+}
+
+@keyframes deslizar {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.parceiros-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  align-items: center;
+  justify-items: center;
+  padding-top: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}

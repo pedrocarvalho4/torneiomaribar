@@ -35,8 +35,11 @@
     <section class="hero">
       <h2>Bem-vindo ao Torneio Maribar 2025!</h2>
       <p>Praia, amigos, voleibol e muita diversão num fim de semana inesquecível.</p>
-      <p style="font-weight: bold; font-size: 1.2rem; margin-top: 1rem;">📥 Inscrições brevemente disponíveis!</p>
-      <a href="informacoes.html" class="botao">Sabe mais</a>
+      <div class="botoes">
+        <a href="https://bit.ly/inscricoestorneiomaribar2025" class="botao" target="_blank">📥 Inscreve-te já</a>
+        <a href="informacoes.html" class="botao">Sabe mais</a>
+      </div>
+      <p></p>
       <div id="countdown" style="margin-top: 1rem; font-weight: bold; font-size: 1.2rem;"></div>
 
       <script>
@@ -64,6 +67,34 @@
       </script>
 
     </section>
+    <section class="patrocinadores-carousel">
+      <div class="carousel-track" id="carousel-track">
+        <img src="p_maribar.png" alt="Maribar">
+        <img src="p_avenida.png" alt="Restaurante Avenida da Praia">
+        <img src="p_aasm.png" alt="AASM">
+        <img src="p_fabridoce.png" alt="Fabridoce">
+        <img src="p_ffonseca.png" alt="ffonseca">
+        <img src="p_hotelmoliceiro.png" alt="hotelmoliceiro">
+        <img src="p_vougafrio.png" alt="vougafrio">
+        <!-- repete os logos se quiseres efeito infinito mais suave -->
+        <img src="p_maribar.png" alt="Maribar1">
+        <img src="p_avenida.png" alt="Restaurante Avenida da Praia1">
+        <img src="p_aasm.png" alt="AASM1">
+        <img src="p_fabridoce.png" alt="Fabridoce1">
+        <img src="p_ffonseca.png" alt="ffonseca1">
+        <img src="p_hotelmoliceiro.png" alt="hotelmoliceiro1">
+        <img src="p_vougafrio.png" alt="vougafrio1">
+
+        <img src="p_maribar.png" alt="Maribar2">
+        <img src="p_avenida.png" alt="Restaurante Avenida da Praia2">
+        <img src="p_aasm.png" alt="AASM2">
+        <img src="p_fabridoce.png" alt="Fabridoce2">
+        <img src="p_ffonseca.png" alt="ffonseca2">
+        <img src="p_hotelmoliceiro.png" alt="hotelmoliceiro2">
+        <img src="p_vougafrio.png" alt="vougafrio2">
+      </div>
+    </section>
+
     <section class="instagram-feed">
       <h2>Sigue-nos no Instagram 📸</h2>
       <!-- Elfsight Instagram Feed | Untitled Instagram Feed -->
@@ -78,22 +109,34 @@
       menu.classList.toggle("active");
     }
   </script>
-  </body>
-  <footer>
-    <p>&copy; Torneio de Voleibol de Praia no Maribar | Contacto: <a
-        href="mailto:pedrofacarvalho@gmail.com">pedrofacarvalho@gmail.com</a></p>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/profile.php?id=100093335237350" target="_blank" aria-label="Facebook">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="24"
-          height="24">
-      </a>
-      <a href="https://www.instagram.com/torneiomaribarvolley?igsh=NncxcXVhNWp2OTh6" target="_blank"
-        aria-label="Instagram">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="24"
-          height="24">
-      </a>
-    </div>
-  </footer>
+  <script>
+    const imagens = document.querySelectorAll('.carousel-img');
+    let indexAtual = 0;
+
+    function mostrarProximaImagem() {
+      imagens[indexAtual].classList.remove('active');
+      indexAtual = (indexAtual + 1) % imagens.length;
+      imagens[indexAtual].classList.add('active');
+    }
+
+    setInterval(mostrarProximaImagem, 3000); // troca a cada 3 segundos
+  </script>
+</body>
+<footer>
+  <p>&copy; Torneio de Voleibol de Praia no Maribar | Contacto: <a
+      href="mailto:pedrofacarvalho@gmail.com">pedrofacarvalho@gmail.com</a></p>
+  <div class="social-icons">
+    <a href="https://www.facebook.com/profile.php?id=100093335237350" target="_blank" aria-label="Facebook">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="24"
+        height="24">
+    </a>
+    <a href="https://www.instagram.com/torneiomaribarvolley?igsh=NncxcXVhNWp2OTh6" target="_blank"
+      aria-label="Instagram">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="24"
+        height="24">
+    </a>
+  </div>
+</footer>
 
 
 </html>

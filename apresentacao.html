@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Apresentação ao Vivo - Torneio Maribar</title>
@@ -46,26 +45,43 @@
   <div class="btn-container">
     <a href="calendarios.html" class="btn">⬅ Voltar aos Calendários</a>
     <button class="btn" onclick="toggleFullScreen()">🔲 Fullscreen</button>
+    <button class="btn" onclick="previousLink()">⏮ Anterior</button>
+    <button class="btn" onclick="nextLink()">⏭ Seguinte</button>
   </div>
 
   <iframe id="sheetFrame" src="https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=2067354137&range=A1"></iframe>
 
   <script>
     const links = [
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=2067354137&range=A1",
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=1057529267&range=A1",
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=381487257&range=A1",
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=1992541591&range=A1",
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=108382013&range=A1",
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=1027930941&range=A1",
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=1652358830&range=A1",
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=299876945&range=A1"
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=2067354137",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=1057529267",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=381487257",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=1992541591",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=1079368948",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=109933911",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=46041618",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=108382013",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=1027930941",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=1486518832",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=1652358830",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=777666272",
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=299876945"
     ];
     let index = 0;
 
     function updateIframe() {
       document.getElementById("sheetFrame").src = links[index];
       index = (index + 1) % links.length;
+    }
+
+    function nextLink() {
+      index = (index + 1) % links.length;
+      document.getElementById("sheetFrame").src = links[index];
+    }
+
+    function previousLink() {
+      index = (index - 1 + links.length) % links.length;
+      document.getElementById("sheetFrame").src = links[index];
     }
 
     setInterval(updateIframe, 30000);
