@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset 
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://torneiomaribar.netlify.app/</loc>
+    <lastmod>2025-06-16</lastmod>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://torneiomaribar.netlify.app/sobre-nos</loc>
+    <lastmod>2025-06-16</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://torneiomaribar.netlify.app/edicoes-passadas</loc>
+    <lastmod>2025-06-16</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://torneiomaribar.netlify.app/informacoes</loc>
+    <lastmod>2025-06-16</lastmod>
+    <priority>0.80</priority>
+  </url>
+  
+  <url>
+    <loc>https://torneiomaribar.netlify.app/calendario</loc>
+    <lastmod>2025-06-16</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://torneiomaribar.netlify.app/galeria</loc>
+    <lastmod>2025-06-16</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://torneiomaribar.netlify.app/parceiros</loc>
+    <lastmod>2025-06-16</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://torneiomaribar.netlify.app/regulamento</loc>
+    <lastmod>2025-06-16</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+</urlset>
