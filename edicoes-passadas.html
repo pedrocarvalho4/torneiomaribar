@@ -44,11 +44,6 @@
 
       <!-- 2023 -->
       <h3>🏐 Torneio 2023</h3>
-      <p>Foto de grupo:</p>
-      <img src="grupo2023.jpg" alt="Foto de grupo 2023"
-        style="width:100%; max-width: 700px; border-radius: 8px; margin-bottom: 1rem;">
-
-      <p>Reel oficial no Instagram:</p>
       <a href="https://www.instagram.com/reel/Cvy9xl4LwuI/" target="_blank">
         <img src="grupo2023.jpg" alt="Reel 2023 no Instagram"
           style="width: 100%; max-width: 700px; border-radius: 8px; margin-bottom: 2rem;">
@@ -79,6 +74,86 @@
       menu.classList.toggle("active");
     }
   </script>
+
+  <section class="patrocinadores-carousel">
+    <div class="carousel-track" id="carousel-track">
+      <a href="https://www.instagram.com/maribartorreira/" target="_blank">
+        <img src="p_maribar.png" alt="Maribar">
+      </a>
+      <a href="https://www.instagram.com/avenida_praia/" target="_blank">
+        <img src="p_avenida.png" alt="Restaurante Avenida da Praia">
+      </a>
+      <a href="https://www.instagram.com/aasmvoleibol/" target="_blank">
+        <img src="p_aasm.png" alt="AASM">
+      </a>
+      <a href="https://www.instagram.com/fabridoce_doces.regionais/" target="_blank">
+        <img src="p_fabridoce.png" alt="Fabridoce">
+      </a>
+      <a href="https://www.instagram.com/f.fonseca_sa/" target="_blank">
+        <img src="p_ffonseca.png" alt="ffonseca">
+      </a>
+      <a href="https://www.instagram.com/hotel_moliceiro/" target="_blank">
+        <img src="p_hotelmoliceiro.png" alt="hotelmoliceiro">
+      </a>
+      <a href="https://www.instagram.com/tgvs_vougafrio/" target="_blank">
+        <img src="p_vougafrio.png" alt="vougafrio">
+      </a>
+      <a href="https://www.instagram.com/andreia.professional/" target="_blank">
+        <img src="p_andreia.png" alt="andreia">
+      </a>
+      <a href="https://www.instagram.com/energiaemequilibrio/" target="_blank">
+        <img src="p_energia.jpg" alt="energia">
+      </a>
+      <a href="https://www.instagram.com/leixoessportclub/" target="_blank">
+        <img src="p_leixoes.png" alt="leixoes">
+      </a>
+
+      <!-- Repetição para efeito contínuo -->
+      <a href="https://www.instagram.com/maribartorreira/" target="_blank">
+        <img src="p_maribar.png" alt="Maribar1">
+      </a>
+      <a href="https://www.instagram.com/avenida_praia/" target="_blank">
+        <img src="p_avenida.png" alt="Restaurante Avenida da Praia1">
+      </a>
+      <a href="https://www.instagram.com/aasmvoleibol/" target="_blank">
+        <img src="p_aasm.png" alt="AASM1">
+      </a>
+      <a href="https://www.instagram.com/fabridoce_doces.regionais/" target="_blank">
+        <img src="p_fabridoce.png" alt="Fabridoce1">
+      </a>
+      <a href="https://www.instagram.com/f.fonseca_sa/" target="_blank">
+        <img src="p_ffonseca.png" alt="ffonseca1">
+      </a>
+      <a href="https://www.instagram.com/hotel_moliceiro/" target="_blank">
+        <img src="p_hotelmoliceiro.png" alt="hotelmoliceiro1">
+      </a>
+      <a href="https://www.instagram.com/tgvs_vougafrio/" target="_blank">
+        <img src="p_vougafrio.png" alt="vougafrio1">
+      </a>
+      <a href="https://www.instagram.com/andreia.professional/" target="_blank">
+        <img src="p_andreia.png" alt="andreia1">
+      </a>
+      <a href="https://www.instagram.com/energiaemequilibrio/" target="_blank">
+        <img src="p_energia.jpg" alt="energia1">
+      </a>
+      <a href="https://www.instagram.com/leixoessportclub/" target="_blank">
+        <img src="p_leixoes.png" alt="leixoes1">
+      </a>
+    </div>
+  </section>
+  <script>
+    const imagens = document.querySelectorAll('.carousel-img');
+    let indexAtual = 0;
+
+    function mostrarProximaImagem() {
+      imagens[indexAtual].classList.remove('active');
+      indexAtual = (indexAtual + 1) % imagens.length;
+      imagens[indexAtual].classList.add('active');
+    }
+
+    setInterval(mostrarProximaImagem, 3000); // troca a cada 3 segundos
+  </script>
+
 </body>
 <footer>
   <p>&copy; Torneio de Voleibol de Praia no Maribar | Contacto: <a

@@ -151,6 +151,7 @@ footer .social-icons a:hover {
 .submenu a:hover {
   color: #0073e6;
 }
+
 /* Menu responsivo */
 .menu-toggle {
   display: none;
@@ -177,11 +178,13 @@ footer .social-icons a:hover {
     display: block;
   }
 }
+
 .conteudo {
   padding: 2rem 1rem;
   max-width: 900px;
   margin: 0 auto;
 }
+
 .botoes {
   display: flex;
   justify-content: center;
@@ -202,7 +205,8 @@ footer .social-icons a:hover {
   font-weight: bold;
   text-decoration: none;
   transition: background-color 0.3s, color 0.3s;
-  white-space: nowrap; /* impede quebra de linha dentro do botão */
+  white-space: nowrap;
+  /* impede quebra de linha dentro do botão */
 }
 
 .botao:hover {
@@ -233,6 +237,7 @@ footer .social-icons a:hover {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -247,4 +252,38 @@ footer .social-icons a:hover {
   padding-top: 2rem;
   max-width: 1000px;
   margin: 0 auto;
+}
+
+.torneios-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.torneio-bloco {
+  width: 300px;
+  text-align: left;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.duplas-lista {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.duplas-lista li {
+  margin-bottom: 5px;
+}
+
+@media (max-width: 900px) {
+  .torneios-container {
+    flex-direction: column;
+    align-items: center;
+  }
 }

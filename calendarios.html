@@ -32,10 +32,78 @@
       </nav>
     </header>
 
-    <div style="text-align:center; padding: 100px 20px; font-family: sans-serif;">
+    <div style="text-align:center; padding: 50px 20px; font-family: sans-serif;">
       <h1 style="color: #004080;">📢 Informações brevemente disponíveis</h1>
-      <p>O calendário e resultados do torneio estarão disponíveis em breve. Fica atento!</p>
+      <p>O calendário e os resultados do torneio estarão disponíveis no próprio dia do evento.</p>
+      <p>No entanto, já podes acompanhar as inscrições das duplas nesta página!</p>
+
+      <div class="torneios-container">
+        <div class="torneio-bloco">
+          <h2 style="color: #004080;">Torneio Masculino</h2>
+          <h3>Duplas Inscritas <span id="total-duplas-masc" style="font-weight: normal;"></span></h3>
+          <ul id="duplas-list-masc" class="duplas-lista"></ul>
+        </div>
+
+        <div class="torneio-bloco">
+          <h2 style="color: #800040;">Torneio Feminino</h2>
+          <h3>Duplas Inscritas <span id="total-duplas-fem" style="font-weight: normal;"></span></h3>
+          <ul id="duplas-list-fem" class="duplas-lista"></ul>
+        </div>
+
+        <div class="torneio-bloco">
+          <h2 style="color: #008060;">Torneio Misto</h2>
+          <h3>Duplas Inscritas <span id="total-duplas-mix" style="font-weight: normal;"></span></h3>
+          <ul id="duplas-list-mix" class="duplas-lista"></ul>
+        </div>
+      </div>
     </div>
+
+    <script>
+      const sheetId = "1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0";
+
+      function carregarDuplas(gid, listaId, totalId) {
+        const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&gid=${gid}`;
+        fetch(url)
+          .then(res => res.text())
+          .then(text => {
+            const json = JSON.parse(text.substring(47).slice(0, -2));
+            const duplasList = document.getElementById(listaId);
+            const totalSpan = document.getElementById(totalId);
+
+            const totalDuplas = json.table.rows[0]?.c[5]?.v;
+            if (totalDuplas) {
+              totalSpan.textContent = `(${totalDuplas} duplas inscritas)`;
+            }
+
+            json.table.rows.forEach(row => {
+              const numero = row.c[0]?.v;
+              const atleta1 = row.c[1]?.v || "";
+              const atleta2 = row.c[2]?.v || "";
+
+              if (!numero) return;
+
+              const li = document.createElement("li");
+              li.textContent = `${atleta1} / ${atleta2}`;
+              duplasList.appendChild(li);
+            });
+          })
+          .catch(e => {
+            document.getElementById(listaId).innerHTML = "<li>Erro ao carregar as duplas.</li>";
+            console.error(e);
+          });
+      }
+
+      // Para já, usa o mesmo gid nas 3 secções. Depois só trocar aqui pelos corretos.
+      const gidMasculino = "1135744744";
+      const gidFeminino = "1675225089";
+      const gidMisto = "49743314";
+
+      carregarDuplas(gidMasculino, "duplas-list-masc", "total-duplas-masc");
+      carregarDuplas(gidFeminino, "duplas-list-fem", "total-duplas-fem");
+      carregarDuplas(gidMisto, "duplas-list-mix", "total-duplas-mix");
+    </script>
+
+
     <!--
     <section class="submenu">
       <h1>Calendários e Resultados</h1>
@@ -270,8 +338,88 @@
       }
     </script>-->
   </div>
+  <section class="patrocinadores-carousel">
+    <div class="carousel-track" id="carousel-track">
+      <a href="https://www.instagram.com/maribartorreira/" target="_blank">
+        <img src="p_maribar.png" alt="Maribar">
+      </a>
+      <a href="https://www.instagram.com/avenida_praia/" target="_blank">
+        <img src="p_avenida.png" alt="Restaurante Avenida da Praia">
+      </a>
+      <a href="https://www.instagram.com/aasmvoleibol/" target="_blank">
+        <img src="p_aasm.png" alt="AASM">
+      </a>
+      <a href="https://www.instagram.com/fabridoce_doces.regionais/" target="_blank">
+        <img src="p_fabridoce.png" alt="Fabridoce">
+      </a>
+      <a href="https://www.instagram.com/f.fonseca_sa/" target="_blank">
+        <img src="p_ffonseca.png" alt="ffonseca">
+      </a>
+      <a href="https://www.instagram.com/hotel_moliceiro/" target="_blank">
+        <img src="p_hotelmoliceiro.png" alt="hotelmoliceiro">
+      </a>
+      <a href="https://www.instagram.com/tgvs_vougafrio/" target="_blank">
+        <img src="p_vougafrio.png" alt="vougafrio">
+      </a>
+      <a href="https://www.instagram.com/andreia.professional/" target="_blank">
+        <img src="p_andreia.png" alt="andreia">
+      </a>
+      <a href="https://www.instagram.com/energiaemequilibrio/" target="_blank">
+        <img src="p_energia.jpg" alt="energia">
+      </a>
+      <a href="https://www.instagram.com/leixoessportclub/" target="_blank">
+        <img src="p_leixoes.png" alt="leixoes">
+      </a>
+
+      <!-- Repetição para efeito contínuo -->
+      <a href="https://www.instagram.com/maribartorreira/" target="_blank">
+        <img src="p_maribar.png" alt="Maribar1">
+      </a>
+      <a href="https://www.instagram.com/avenida_praia/" target="_blank">
+        <img src="p_avenida.png" alt="Restaurante Avenida da Praia1">
+      </a>
+      <a href="https://www.instagram.com/aasmvoleibol/" target="_blank">
+        <img src="p_aasm.png" alt="AASM1">
+      </a>
+      <a href="https://www.instagram.com/fabridoce_doces.regionais/" target="_blank">
+        <img src="p_fabridoce.png" alt="Fabridoce1">
+      </a>
+      <a href="https://www.instagram.com/f.fonseca_sa/" target="_blank">
+        <img src="p_ffonseca.png" alt="ffonseca1">
+      </a>
+      <a href="https://www.instagram.com/hotel_moliceiro/" target="_blank">
+        <img src="p_hotelmoliceiro.png" alt="hotelmoliceiro1">
+      </a>
+      <a href="https://www.instagram.com/tgvs_vougafrio/" target="_blank">
+        <img src="p_vougafrio.png" alt="vougafrio1">
+      </a>
+      <a href="https://www.instagram.com/andreia.professional/" target="_blank">
+        <img src="p_andreia.png" alt="andreia1">
+      </a>
+      <a href="https://www.instagram.com/energiaemequilibrio/" target="_blank">
+        <img src="p_energia.jpg" alt="energia1">
+      </a>
+      <a href="https://www.instagram.com/leixoessportclub/" target="_blank">
+        <img src="p_leixoes.png" alt="leixoes1">
+      </a>
+    </div>
+  </section>
+  <script>
+    const imagens = document.querySelectorAll('.carousel-img');
+    let indexAtual = 0;
+
+    function mostrarProximaImagem() {
+      imagens[indexAtual].classList.remove('active');
+      indexAtual = (indexAtual + 1) % imagens.length;
+      imagens[indexAtual].classList.add('active');
+    }
+
+    setInterval(mostrarProximaImagem, 3000); // troca a cada 3 segundos
+  </script>
+  
 </body>
 <footer>
+  
   <p>
     &copy; Torneio de Voleibol de Praia no Maribar |
     <a href="apresentacao.html">📊 Apresentação</a> |
