@@ -37,46 +37,6 @@
       <h2>Torneio Masculino</h2>
 
 
-      <h3>Duplas Inscritas <span id="total-duplas" style="font-weight: normal;"></span></h3>
-      <ul id="duplas-list"></ul>
-
-      <script>
-        const sheetId = "1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0";
-        const gid = "1135744744";
-
-        const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&gid=${gid}`;
-
-        fetch(url)
-          .then(res => res.text())
-          .then(text => {
-            const json = JSON.parse(text.substring(47).slice(0, -2));
-            const duplasList = document.getElementById("duplas-list");
-            const totalSpan = document.getElementById("total-duplas");
-
-            // Tentar ir buscar o valor da célula F1 (linha 0, coluna 5)
-            const totalDuplas = json.table.rows[0]?.c[5]?.v;
-            if (totalDuplas) {
-              totalSpan.textContent = `(${totalDuplas} duplas inscritas)`;
-            }
-
-            json.table.rows.forEach(row => {
-              const numero = row.c[0]?.v;
-              const atleta1 = row.c[1]?.v || "";
-              const atleta2 = row.c[2]?.v || "";
-
-              if (!numero) return; // parar se a coluna A estiver vazia
-
-              const li = document.createElement("li");
-              li.textContent = `${atleta1} / ${atleta2}`;
-              duplasList.appendChild(li);
-            });
-          })
-          .catch(e => {
-            document.getElementById("duplas-list").innerHTML = "<li>Erro ao carregar as duplas.</li>";
-            console.error(e);
-          });
-      </script>
-
 
       <h3>Quadro Competitivo</h3>
       <p style="color: #444; font-weight: bold; margin-top: 10px;">
