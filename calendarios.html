@@ -20,12 +20,10 @@
 
 <body>
   <div class="calendario">
-
-
     <header>
       <nav>
         <h1 style="display: flex; align-items: center; gap: 10px;">
-          <img src="logo.JPG" alt="Logótipo" width="32" height="32" style="border-radius: 50%;">
+          <img src="logo-torneio-maribar-2025.jpg" alt="Logótipo" width="32" height="32" style="border-radius: 50%;">
           Torneio Maribar
         </h1>
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
@@ -49,20 +47,25 @@
       <div class="torneios-container">
         <div class="torneio-bloco">
           <h2 style="color: #004080;">Torneio Masculino</h2>
-          <h3>Duplas Inscritas <span id="total-duplas-masc" style="font-weight: normal;"></span></h3>
+          <h3>Duplas inscritas <span id="total-duplas-masc" style="font-weight: normal;"></span></h3>
           <ul id="duplas-list-masc" class="duplas-lista"></ul>
         </div>
 
         <div class="torneio-bloco">
           <h2 style="color: #800040;">Torneio Feminino</h2>
-          <h3>Duplas Inscritas <span id="total-duplas-fem" style="font-weight: normal;"></span></h3>
+          <h3>Duplas inscritas <span id="total-duplas-fem" style="font-weight: normal;"></span></h3>
           <ul id="duplas-list-fem" class="duplas-lista"></ul>
         </div>
 
         <div class="torneio-bloco">
           <h2 style="color: #008060;">Torneio Misto</h2>
-          <h3>Duplas Inscritas <span id="total-duplas-mix" style="font-weight: normal;"></span></h3>
+          <h3>Duplas inscritas <span id="total-duplas-mix" style="font-weight: normal;"></span></h3>
           <ul id="duplas-list-mix" class="duplas-lista"></ul>
+        </div>
+        <div class="torneio-bloco">
+          <h2 style="color: #e6b800;">Torneio Sub-16</h2>
+          <h3>Duplas inscritas <span id="total-duplas-sub16" style="font-weight: normal;"></span></h3>
+          <ul id="duplas-list-sub16" class="duplas-lista"></ul>
         </div>
       </div>
     </div>
@@ -79,9 +82,28 @@
             const duplasList = document.getElementById(listaId);
             const totalSpan = document.getElementById(totalId);
 
-            const totalDuplas = json.table.rows[0]?.c[5]?.v;
+            let maxDuplas = 0;
+            switch (listaId) {
+              case "duplas-list-masc":
+                maxDuplas = 64;
+                break;
+              case "duplas-list-fem":
+                maxDuplas = 64;
+                break;
+              case "duplas-list-mix":
+                maxDuplas = 64;
+                break;
+              case "duplas-list-sub16":
+                maxDuplas = 16;
+                break;
+            }
+
+            const totalDuplas = json.table.rows
+              .slice(1) // Ignora a primeira linha (possivelmente fórmula)
+              .filter(r => r.c[1]?.v && r.c[2]?.v).length;
+
             if (totalDuplas) {
-              totalSpan.textContent = `(${totalDuplas} duplas inscritas)`;
+              totalSpan.textContent = `(${totalDuplas} de ${maxDuplas} duplas)`;
             }
 
             json.table.rows.forEach(row => {
@@ -106,10 +128,16 @@
       const gidMasculino = "1135744744";
       const gidFeminino = "1675225089";
       const gidMisto = "49743314";
+      const gidSub16 = "20547463";
 
       carregarDuplas(gidMasculino, "duplas-list-masc", "total-duplas-masc");
       carregarDuplas(gidFeminino, "duplas-list-fem", "total-duplas-fem");
       carregarDuplas(gidMisto, "duplas-list-mix", "total-duplas-mix");
+      carregarDuplas(gidSub16, "duplas-list-sub16", "total-duplas-sub16");
+      function toggleMenu() {
+        const menu = document.getElementById("nav-menu");
+        menu.classList.toggle("active");
+      }
     </script>
 
 
@@ -341,11 +369,10 @@
       document.getElementById('filtroPorRealizar').addEventListener('change', () => {
         renderTable();
       });
-      function toggleMenu() {
-        const menu = document.getElementById("nav-menu");
-        menu.classList.toggle("active");
-      }
+  
     </script>-->
+
+
   </div>
   <section class="patrocinadores-carousel">
     <div class="carousel-track" id="carousel-track">
@@ -379,7 +406,9 @@
       <a href="https://www.instagram.com/leixoessportclub/" target="_blank">
         <img src="p_leixoes.png" alt="leixoes">
       </a>
-
+      <a href="https://www.instagram.com/municipiodamurtosa/" target="_blank">
+        <img src="p_cmm.png" alt="Camara Municpal da Murtosa">
+      </a>
       <!-- Repetição para efeito contínuo -->
       <a href="https://www.instagram.com/maribartorreira/" target="_blank">
         <img src="p_maribar.png" alt="Maribar1">

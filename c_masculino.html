@@ -14,7 +14,7 @@
   <header>
     <nav>
       <h1 style="display: flex; align-items: center; gap: 10px;">
-        <img src="logo.JPG" alt="Logótipo" width="32" height="32" style="border-radius: 50%;">
+        <img src="logo-torneio-maribar-2025.jpg" alt="Logótipo" width="32" height="32" style="border-radius: 50%;">
         Torneio Maribar
       </h1>
       <button class="menu-toggle" onclick="toggleMenu()">☰</button>
@@ -76,6 +76,10 @@
     function mostrarFase(fase) {
       document.getElementById('fase1').style.display = (fase === 'fase1') ? 'block' : 'none';
       document.getElementById('fase2').style.display = (fase === 'fase2') ? 'block' : 'none';
+    }
+    function toggleMenu() {
+      const menu = document.getElementById("nav-menu");
+      menu.classList.toggle("active");
     }
   </script>
 </body>
