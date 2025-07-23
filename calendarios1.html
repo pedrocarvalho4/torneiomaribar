@@ -36,7 +36,7 @@
       <h1>Calendários e Resultados</h1>
       <h3>Selecione o Torneio que pretende ver:</h3>
       <ul>
-        <li><a href="c_masculino.html">Torneio Masculino - para testes</a></li>
+        <li><a href="c_masculino.html">Torneio Masculino</a></li>
         <li><a href="c_feminino.html">Torneio Feminino</a></li>
         <li><a href="c_mistos.html">Torneio Mistos</a></li>
         <li><a href="c_sub16.html">Torneio Sub-16</a></li>
@@ -59,7 +59,7 @@
           <option value="MAS">Masculino</option>
           <option value="FEM">Feminino</option>
           <option value="MIX">Mistos</option>
-          <option value="sub-16">sub-16</option>
+          <option value="JSub16">sub-16</option>
         </select>
       </label>
 
@@ -139,18 +139,20 @@
           });
       }
 
-      function fetchTodas() {
+      function fetchTodas(callback) {
+        allRows = []; // limpar os dados antigos
         let count = 0;
         abas.forEach(aba => {
           fetchAba(aba, () => {
             count++;
             if (count === abas.length) {
               document.getElementById('btnFiltrar').disabled = false;
-              renderTable();
+              if (typeof callback === "function") callback(); // aplica os filtros só depois
             }
           });
         });
       }
+
 
       function formatarHora(cell) {
         if (!cell || !cell.v) return '';
@@ -246,8 +248,12 @@
 
       document.getElementById('btnFiltrar').addEventListener('click', () => {
         console.log('[INFO] Botão "Aplicar Filtros" clicado');
-        renderTable();
+        document.getElementById('btnFiltrar').disabled = true;
+        fetchTodas(() => {
+          renderTable();
+        });
       });
+
 
       document.getElementById('btnFiltrar').disabled = true;
       fetchTodas();
