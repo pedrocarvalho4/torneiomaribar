@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Apresentação ao Vivo - Torneio Maribar</title>
   <style>
-    html, body {
+    html,
+    body {
       margin: 0;
       padding: 0;
       height: 100%;
@@ -40,6 +42,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <div class="btn-container">
@@ -49,24 +52,22 @@
     <button class="btn" onclick="nextLink()">⏭ Seguinte</button>
   </div>
 
-  <iframe id="sheetFrame" src="https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=2067354137&range=A1"></iframe>
+  <iframe id="sheetFrame"
+    src="https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=2067354137&range=A1"></iframe>
 
   <script>
     const links = [
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=2067354137",<!--Mix Masc-->
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=1057529267",<!--Mix Grupos-->
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=381487257", <!--Fem Grupos-->
       "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=1992541591", <!--Torneio Masc-->
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=1079368948",<!--Torneio Masc 2-->
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=109933911",<!--Torneio Mix-->
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=46041618",<!--Torneio Mix 2-->
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=108382013",<!--Torneio Fem-->
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=1027930941",<!--Taça Masc-->
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=1486518832",<!--Taça Masc 2-->
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=1652358830",<!--Taça Mix-->
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=777666272",<!--Taça Mix2-->
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=299876945",<!--Taça Fem-->
-      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=1946814567"<! --Sub16-->
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=1079368948",< !--Torneio Masc 2-- >
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=109933911",< !--Torneio Mix-- >
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=46041618",< !--Torneio Mix 2-- >
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=108382013",< !--Torneio Fem-- >
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=1027930941",< !--Taça Masc-- >
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=1486518832",< !--Taça Masc 2-- >
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=1652358830",< !--Taça Mix-- >
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=777666272",< !--Taça Mix2-- >
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit#gid=299876945",< !--Taça Fem-- >
+      "https://docs.google.com/spreadsheets/d/1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0/edit?gid=1946814567" < ! --Sub16-->
     ];
     let index = 0;
 
@@ -97,4 +98,5 @@
   </script>
 
 </body>
+
 </html>

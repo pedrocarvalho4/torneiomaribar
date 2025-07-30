@@ -93,6 +93,57 @@
       <tbody id="tabela"></tbody>
     </table>
 
+    <hr style="margin: 40px 0;">
+
+    <h3>Ou veja os jogos por campo</h3>
+    <div style="margin-bottom: 15px;">
+      <label>Selecionar Campo:
+        <select id="campoFiltroSolo">
+          <option value="">Todos</option>
+          <option value="Campo 1">Campo 1</option>
+          <option value="Campo 2">Campo 2</option>
+          <option value="Campo 3">Campo 3</option>
+          <option value="Campo 4">Campo 4</option>
+          <option value="Campo 5">Campo 5</option>
+          <option value="Campo 6">Campo 6</option>
+          <option value="Campo 7">Campo 7</option>
+          <option value="Campo 8">Campo 8</option>
+          <option value="Campo 9">Campo 9</option>
+          <option value="Campo 10">Campo 10</option>
+          <option value="Campo 11">Campo 11</option>
+          <option value="Campo 12">Campo 12</option>
+          <option value="Campo 13">Campo 13</option>
+          <option value="Campo 14">Campo 14</option>
+          <option value="Campo 15">Campo 15</option>
+          <option value="Campo 16">Campo 16</option>
+          <option value="Campo 17">Campo 17</option>
+          <option value="Campo 18">Campo 18</option>
+          <option value="Campo 19">Campo 19</option>
+          <option value="Campo 20">Campo 20</option>
+          <option value="Campo 21">Campo 21</option>
+        </select>
+      </label>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>N.º J.</th>
+          <th>Dia</th>
+          <th>Hora</th>
+          <th>Campo</th>
+          <th>Equipa A</th>
+          <th></th>
+          <th>X</th>
+          <th></th>
+          <th>Equipa B</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaCampo"></tbody>
+    </table>
+
+
+
     <script>
       const sheetID = '1W7vYayCEYez1C1DhuVTb5EyxEbZoZUXAdAEXjL411MI';
       const abas = [
@@ -123,6 +174,7 @@
 
       function fetchAba(aba, onComplete) {
         const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&gid=${aba.gid}&_=${Date.now()}`;
+
         fetch(url)
           .then(res => res.text())
           .then(text => {
@@ -251,6 +303,7 @@
         document.getElementById('btnFiltrar').disabled = true;
         fetchTodas(() => {
           renderTable();
+          renderTableCampo();
         });
       });
 
@@ -269,12 +322,154 @@
         const menu = document.getElementById("nav-menu");
         menu.classList.toggle("active");
       }
+
+      function renderTableCampo() {
+        const filtroCampo = document.getElementById('campoFiltroSolo').value;
+
+        const tbody = document.getElementById('tabelaCampo');
+        tbody.innerHTML = '';
+
+        let linhasFiltradas = [];
+
+        allRows.forEach(row => {
+          const numJ = row.c[0]?.v || '';
+          const dia = row.c[1]?.v || '';
+          const hora = formatarHora(row.c[2]);
+          const campoNome = row.c[row.c.length - 1]?.v || '';
+          const equipaA = row.c[4]?.v || '';
+          const equipaB = row.c[8]?.v || '';
+
+          if (!filtroCampo || campoNome === filtroCampo) {
+            linhasFiltradas.push([
+              numJ,
+              dia,
+              hora,
+              campoNome,
+              equipaA,
+              row.c[5]?.v || '',
+              'X',
+              row.c[7]?.v || '',
+              equipaB
+            ]);
+          }
+        });
+
+        linhasFiltradas.sort((a, b) => {
+          const diaA = parseInt(a[1]) || 0;
+          const diaB = parseInt(b[1]) || 0;
+          const horaA = a[2].split(':').map(Number);
+          const horaB = b[2].split(':').map(Number);
+          if (diaA !== diaB) return diaA - diaB;
+          if (horaA[0] !== horaB[0]) return horaA[0] - horaB[0];
+          return horaA[1] - horaB[1];
+        });
+        let primeiroSemResultadoMarcado = false;
+        linhasFiltradas.forEach(cols => {
+          const tr = document.createElement('tr');
+          const semResultado = (!cols[5] && !cols[7]);
+
+          if (semResultado && !primeiroSemResultadoMarcado) {
+            tr.classList.add('primeiro-sem-resultado');
+            primeiroSemResultadoMarcado = true;
+          }
+          cols.forEach(text => {
+            const td = document.createElement('td');
+            td.textContent = text;
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        });
+      }
+      document.getElementById('campoFiltroSolo').addEventListener('change', () => {
+        renderTableCampo();
+      });
     </script>
   </div>
+  <section class="patrocinadores-carousel">
+    <div class="carousel-track" id="carousel-track">
+      <a href="https://www.instagram.com/maribartorreira/" target="_blank">
+        <img src="p_maribar.png" alt="Maribar">
+      </a>
+      <a href="https://www.instagram.com/avenida_praia/" target="_blank">
+        <img src="p_avenida.png" alt="Restaurante Avenida da Praia">
+      </a>
+      <a href="https://www.instagram.com/aasmvoleibol/" target="_blank">
+        <img src="p_aasm.png" alt="AASM">
+      </a>
+      <a href="https://www.instagram.com/fabridoce_doces.regionais/" target="_blank">
+        <img src="p_fabridoce.png" alt="Fabridoce">
+      </a>
+      <a href="https://www.instagram.com/f.fonseca_sa/" target="_blank">
+        <img src="p_ffonseca.png" alt="ffonseca">
+      </a>
+      <a href="https://www.instagram.com/hotel_moliceiro/" target="_blank">
+        <img src="p_hotelmoliceiro.png" alt="hotelmoliceiro">
+      </a>
+      <a href="https://www.instagram.com/andreia.professional/" target="_blank">
+        <img src="p_andreia.png" alt="andreia">
+      </a>
+      <a href="https://www.instagram.com/energiaemequilibrio/" target="_blank">
+        <img src="p_energia.jpg" alt="energia">
+      </a>
+      <a href="https://www.instagram.com/leixoessportclub/" target="_blank">
+        <img src="p_leixoes.png" alt="leixoes">
+      </a>
+      <a href="https://www.instagram.com/municipiodamurtosa/" target="_blank">
+        <img src="p_cmm.png" alt="Camara Municpal da Murtosa">
+      </a>
+      <a href="https://www.instagram.com/associacaodevoleiboldoporto/" target="_blank">
+        <img src="p_avp.png" alt="Associação de Voleibol do Porto">
+      </a>
+      <!-- Repetição para efeito contínuo -->
+      <a href="https://www.instagram.com/maribartorreira/" target="_blank">
+        <img src="p_maribar.png" alt="Maribar1">
+      </a>
+      <a href="https://www.instagram.com/avenida_praia/" target="_blank">
+        <img src="p_avenida.png" alt="Restaurante Avenida da Praia1">
+      </a>
+      <a href="https://www.instagram.com/aasmvoleibol/" target="_blank">
+        <img src="p_aasm.png" alt="AASM1">
+      </a>
+      <a href="https://www.instagram.com/fabridoce_doces.regionais/" target="_blank">
+        <img src="p_fabridoce.png" alt="Fabridoce1">
+      </a>
+      <a href="https://www.instagram.com/f.fonseca_sa/" target="_blank">
+        <img src="p_ffonseca.png" alt="ffonseca1">
+      </a>
+      <a href="https://www.instagram.com/hotel_moliceiro/" target="_blank">
+        <img src="p_hotelmoliceiro.png" alt="hotelmoliceiro1">
+      </a>
+      <a href="https://www.instagram.com/andreia.professional/" target="_blank">
+        <img src="p_andreia.png" alt="andreia1">
+      </a>
+      <a href="https://www.instagram.com/energiaemequilibrio/" target="_blank">
+        <img src="p_energia.jpg" alt="energia1">
+      </a>
+      <a href="https://www.instagram.com/leixoessportclub/" target="_blank">
+        <img src="p_leixoes.png" alt="leixoes1">
+      </a>
+    </div>
+  </section>
+  <script>
+    const imagens = document.querySelectorAll('.carousel-img');
+    let indexAtual = 0;
+
+    function mostrarProximaImagem() {
+      imagens[indexAtual].classList.remove('active');
+      indexAtual = (indexAtual + 1) % imagens.length;
+      imagens[indexAtual].classList.add('active');
+    }
+
+    setInterval(mostrarProximaImagem, 3000); // troca a cada 3 segundos
+  </script>
+
 </body>
 <footer>
   <p>
     &copy; Torneio de Voleibol de Praia no Maribar |
+    <a href="apresentacaoSabManha.html">📊 Apresentação Sabado Manha</a> |
+    <a href="apresentacaoSab.html">📊 Apresentação Sabado</a> |
+    <a href="apresentacaoDom.html">📊 Apresentação Domingo</a> |
     <a href="apresentacao.html">📊 Apresentação</a> |
     Contacto: <a href="mailto:pedrofacarvalho@gmail.com">pedrofacarvalho@gmail.com</a>
   </p>
