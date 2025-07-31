@@ -2,15 +2,6 @@
 <html lang="pt">
 
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9J18PX75N4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-9J18PX75N4');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Calendários & Resultados - Torneio Maribar</title>
@@ -20,6 +11,8 @@
 
 <body>
   <div class="calendario">
+
+
     <header>
       <nav>
         <h1 style="display: flex; align-items: center; gap: 10px;">
@@ -39,120 +32,17 @@
       </nav>
     </header>
 
-    <div style="text-align:center; padding: 50px 20px; font-family: sans-serif;">
-      <h1 style="color: #004080;">📢 Informações brevemente disponíveis</h1>
-      <p>O calendário e os resultados do torneio estarão disponíveis no próprio dia do evento.</p>
-      <p>No entanto, já podes acompanhar as inscrições das duplas nesta página!</p>
-
-      <div class="torneios-container">
-        <div class="torneio-bloco">
-          <h2 style="color: #004080;">Torneio Masculino</h2>
-          <h3>Duplas inscritas <span id="total-duplas-masc" style="font-weight: normal;"></span></h3>
-          <ul id="duplas-list-masc" class="duplas-lista"></ul>
-        </div>
-
-        <div class="torneio-bloco">
-          <h2 style="color: #800040;">Torneio Feminino</h2>
-          <h3>Duplas inscritas <span id="total-duplas-fem" style="font-weight: normal;"></span></h3>
-          <ul id="duplas-list-fem" class="duplas-lista"></ul>
-        </div>
-
-        <div class="torneio-bloco">
-          <h2 style="color: #008060;">Torneio Misto</h2>
-          <h3>Duplas inscritas <span id="total-duplas-mix" style="font-weight: normal;"></span></h3>
-          <ul id="duplas-list-mix" class="duplas-lista"></ul>
-        </div>
-        <div class="torneio-bloco">
-          <h2 style="color: #e6b800;">Torneio Sub-16</h2>
-          <h3>Duplas inscritas <span id="total-duplas-sub16" style="font-weight: normal;"></span></h3>
-          <ul id="duplas-list-sub16" class="duplas-lista"></ul>
-        </div>
-      </div>
-    </div>
-
-    <script>
-      const sheetId = "1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0";
-
-      function carregarDuplas(gid, listaId, totalId) {
-        const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&gid=${gid}`;
-        fetch(url)
-          .then(res => res.text())
-          .then(text => {
-            const json = JSON.parse(text.substring(47).slice(0, -2));
-            const duplasList = document.getElementById(listaId);
-            const totalSpan = document.getElementById(totalId);
-
-            let maxDuplas = 0;
-            switch (listaId) {
-              case "duplas-list-masc":
-                maxDuplas = 64;
-                break;
-              case "duplas-list-fem":
-                maxDuplas = 32;
-                break;
-              case "duplas-list-mix":
-                maxDuplas = 64;
-                break;
-              case "duplas-list-sub16":
-                maxDuplas = 8;
-                break;
-            }
-
-            const totalDuplas = json.table.rows
-              .slice(1) // Ignora a primeira linha (possivelmente fórmula)
-              .filter(r => r.c[1]?.v && r.c[2]?.v).length;
-
-            if (totalDuplas) {
-              totalSpan.textContent = `(${totalDuplas} de ${maxDuplas} duplas)`;
-            }
-
-            json.table.rows.forEach(row => {
-              const numero = row.c[0]?.v;
-              const atleta1 = row.c[1]?.v || "";
-              const atleta2 = row.c[2]?.v || "";
-
-              if (!numero) return;
-
-              const li = document.createElement("li");
-              li.textContent = `${atleta1} / ${atleta2}`;
-              duplasList.appendChild(li);
-            });
-          })
-          .catch(e => {
-            document.getElementById(listaId).innerHTML = "<li>Erro ao carregar as duplas.</li>";
-            console.error(e);
-          });
-      }
-
-      // Para já, usa o mesmo gid nas 3 secções. Depois só trocar aqui pelos corretos.
-      const gidMasculino = "1135744744";
-      const gidFeminino = "1675225089";
-      const gidMisto = "49743314";
-      const gidSub16 = "20547463";
-
-      carregarDuplas(gidMasculino, "duplas-list-masc", "total-duplas-masc");
-      carregarDuplas(gidFeminino, "duplas-list-fem", "total-duplas-fem");
-      carregarDuplas(gidMisto, "duplas-list-mix", "total-duplas-mix");
-      carregarDuplas(gidSub16, "duplas-list-sub16", "total-duplas-sub16");
-      function toggleMenu() {
-        const menu = document.getElementById("nav-menu");
-        menu.classList.toggle("active");
-      }
-    </script>
-
-
-    <!--
     <section class="submenu">
-      <h1>Calendários e Resultados</h1>
+      <h1>Calendários Provisórios e Resultados</h1>
       <h3>Selecione o Torneio que pretende ver:</h3>
       <ul>
-        <li><a href="c_masculino.html">Torneio Masculino - para testes</a></li>
-        <li><a href="calendarios/feminino.html">Torneio Feminino</a></li>
-        <li><a href="calendarios/mistos.html">Torneio Mistos</a></li>
-        <li><a href="calendarios/sub16.html">Torneio Sub-16</a></li>
-        <li><a href="/calendarios/taca-masc.html">Taça Maribar Masculina</a></li>
-        <li><a href="/calendarios/taca-fem.html">Taça Maribar Feminina</a></li>
-        <li><a href="/calendarios/taca-mix.html">Taça Maribar Mista</a></li>
+        <li><a href="c_masculino.html">Torneio Masculino</a></li>
+        <li><a href="c_feminino.html">Torneio Feminino</a></li>
+        <li><a href="c_mistos.html">Torneio Mistos</a></li>
+        <li><a href="c_sub16.html">Torneio Sub-16</a></li>
+        <li><a href="c_taca-masc.html">Taça Maribar Masculina</a></li>
+        <li><a href="c_taca-fem.html">Taça Maribar Feminina</a></li>
+        <li><a href="c_taca-mix.html">Taça Maribar Mista</a></li>
       </ul>
     </section>
 
@@ -169,7 +59,7 @@
           <option value="MAS">Masculino</option>
           <option value="FEM">Feminino</option>
           <option value="MIX">Mistos</option>
-          <option value="sub-16">sub-16</option>
+          <option value="JSub16">sub-16</option>
         </select>
       </label>
 
@@ -203,6 +93,57 @@
       <tbody id="tabela"></tbody>
     </table>
 
+    <hr style="margin: 40px 0;">
+
+    <h3>Ou veja os jogos por campo</h3>
+    <div style="margin-bottom: 15px;">
+      <label>Selecionar Campo:
+        <select id="campoFiltroSolo">
+          <option value="">Todos</option>
+          <option value="Campo 1">Campo 1</option>
+          <option value="Campo 2">Campo 2</option>
+          <option value="Campo 3">Campo 3</option>
+          <option value="Campo 4">Campo 4</option>
+          <option value="Campo 5">Campo 5</option>
+          <option value="Campo 6">Campo 6</option>
+          <option value="Campo 7">Campo 7</option>
+          <option value="Campo 8">Campo 8</option>
+          <option value="Campo 9">Campo 9</option>
+          <option value="Campo 10">Campo 10</option>
+          <option value="Campo 11">Campo 11</option>
+          <option value="Campo 12">Campo 12</option>
+          <option value="Campo 13">Campo 13</option>
+          <option value="Campo 14">Campo 14</option>
+          <option value="Campo 15">Campo 15</option>
+          <option value="Campo 16">Campo 16</option>
+          <option value="Campo 17">Campo 17</option>
+          <option value="Campo 18">Campo 18</option>
+          <option value="Campo 19">Campo 19</option>
+          <option value="Campo 20">Campo 20</option>
+          <option value="Campo 21">Campo 21</option>
+        </select>
+      </label>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>N.º J.</th>
+          <th>Dia</th>
+          <th>Hora</th>
+          <th>Campo</th>
+          <th>Equipa A</th>
+          <th></th>
+          <th>X</th>
+          <th></th>
+          <th>Equipa B</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaCampo"></tbody>
+    </table>
+
+
+
     <script>
       const sheetID = '1W7vYayCEYez1C1DhuVTb5EyxEbZoZUXAdAEXjL411MI';
       const abas = [
@@ -232,7 +173,8 @@
       let allRows = [];
 
       function fetchAba(aba, onComplete) {
-        const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&gid=${aba.gid}`;
+        const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&gid=${aba.gid}&_=${Date.now()}`;
+
         fetch(url)
           .then(res => res.text())
           .then(text => {
@@ -249,18 +191,20 @@
           });
       }
 
-      function fetchTodas() {
+      function fetchTodas(callback) {
+        allRows = []; // limpar os dados antigos
         let count = 0;
         abas.forEach(aba => {
           fetchAba(aba, () => {
             count++;
             if (count === abas.length) {
               document.getElementById('btnFiltrar').disabled = false;
-              renderTable();
+              if (typeof callback === "function") callback(); // aplica os filtros só depois
             }
           });
         });
       }
+
 
       function formatarHora(cell) {
         if (!cell || !cell.v) return '';
@@ -356,8 +300,13 @@
 
       document.getElementById('btnFiltrar').addEventListener('click', () => {
         console.log('[INFO] Botão "Aplicar Filtros" clicado');
-        renderTable();
+        document.getElementById('btnFiltrar').disabled = true;
+        fetchTodas(() => {
+          renderTable();
+          renderTableCampo();
+        });
       });
+
 
       document.getElementById('btnFiltrar').disabled = true;
       fetchTodas();
@@ -369,10 +318,72 @@
       document.getElementById('filtroPorRealizar').addEventListener('change', () => {
         renderTable();
       });
-  
-    </script>-->
+      function toggleMenu() {
+        const menu = document.getElementById("nav-menu");
+        menu.classList.toggle("active");
+      }
 
+      function renderTableCampo() {
+        const filtroCampo = document.getElementById('campoFiltroSolo').value;
 
+        const tbody = document.getElementById('tabelaCampo');
+        tbody.innerHTML = '';
+
+        let linhasFiltradas = [];
+
+        allRows.forEach(row => {
+          const numJ = row.c[0]?.v || '';
+          const dia = row.c[1]?.v || '';
+          const hora = formatarHora(row.c[2]);
+          const campoNome = row.c[row.c.length - 1]?.v || '';
+          const equipaA = row.c[4]?.v || '';
+          const equipaB = row.c[8]?.v || '';
+
+          if (!filtroCampo || campoNome === filtroCampo) {
+            linhasFiltradas.push([
+              numJ,
+              dia,
+              hora,
+              campoNome,
+              equipaA,
+              row.c[5]?.v || '',
+              'X',
+              row.c[7]?.v || '',
+              equipaB
+            ]);
+          }
+        });
+
+        linhasFiltradas.sort((a, b) => {
+          const diaA = parseInt(a[1]) || 0;
+          const diaB = parseInt(b[1]) || 0;
+          const horaA = a[2].split(':').map(Number);
+          const horaB = b[2].split(':').map(Number);
+          if (diaA !== diaB) return diaA - diaB;
+          if (horaA[0] !== horaB[0]) return horaA[0] - horaB[0];
+          return horaA[1] - horaB[1];
+        });
+        let primeiroSemResultadoMarcado = false;
+        linhasFiltradas.forEach(cols => {
+          const tr = document.createElement('tr');
+          const semResultado = (!cols[5] && !cols[7]);
+
+          if (semResultado && !primeiroSemResultadoMarcado) {
+            tr.classList.add('primeiro-sem-resultado');
+            primeiroSemResultadoMarcado = true;
+          }
+          cols.forEach(text => {
+            const td = document.createElement('td');
+            td.textContent = text;
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        });
+      }
+      document.getElementById('campoFiltroSolo').addEventListener('change', () => {
+        renderTableCampo();
+      });
+    </script>
   </div>
   <section class="patrocinadores-carousel">
     <div class="carousel-track" id="carousel-track">
@@ -454,14 +465,12 @@
 
 </body>
 <footer>
-
   <p>
     &copy; Torneio de Voleibol de Praia no Maribar |
     <a href="apresentacaoSabManha.html">📊 Apresentação Sabado Manha</a> |
     <a href="apresentacaoSab.html">📊 Apresentação Sabado</a> |
     <a href="apresentacaoDom.html">📊 Apresentação Domingo</a> |
     <a href="apresentacao.html">📊 Apresentação</a> |
-    <a href="calendarios1.html">📊 Calendario</a> |
     Contacto: <a href="mailto:pedrofacarvalho@gmail.com">pedrofacarvalho@gmail.com</a>
   </p>
   <div class="social-icons">
