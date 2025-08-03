@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calendários & Resultados - Torneio Maribar</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body>
+  <div class="calendario">
+    <header>
+      <nav>
+        <h1 style="display: flex; align-items: center; gap: 10px;">
+          <img src="logo-torneio-maribar-2025.jpg" alt="Logótipo" width="32" height="32" style="border-radius: 50%;">
+          Torneio Maribar
+        </h1>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <ul id="nav-menu">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="sobre-nos.html">Sobre Nós</a></li>
+          <li><a href="edicoes-passadas.html">Edições Passadas</a></li>
+          <li><a href="informacoes.html">Informações & Inscrições</a></li>
+          <li><a href="calendarios.html">Calendários & Resultados</a></li>
+          <li><a href="galeria.html">Galeria de Fotos</a></li>
+          <li><a href="regulamento.html">Regulamento</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="submenu">
+      <h1>Calendários Provisórios e Resultados</h1>
+      <p style="color: #444; font-weight: bold; margin-top: 10px;">
+        ℹ️ Apresentam-se abaixo os primeiros 40 jogos ainda por realizar.
+      </p>
+    </section>
+
+    <script>
+      const sheetID = '1W7vYayCEYez1C1DhuVTb5EyxEbZoZUXAdAEXjL411MI';
+      const abas = [
+        { nome: 'Campo 1', gid: '0' },
+        { nome: 'Campo 2', gid: '1748251367' },
+        { nome: 'Campo 3', gid: '88718845' },
+        { nome: 'Campo 4', gid: '1262552338' },
+        { nome: 'Campo 5', gid: '691995695' },
+        { nome: 'Campo 6', gid: '1559184801' },
+        { nome: 'Campo 7', gid: '820424930' },
+        { nome: 'Campo 8', gid: '236323837' },
+        { nome: 'Campo 9', gid: '679884945' },
+        { nome: 'Campo 10', gid: '537214771' },
+        { nome: 'Campo 11', gid: '1443533077' },
+        { nome: 'Campo 12', gid: '869322168' },
+        { nome: 'Campo 13', gid: '1124916512' },
+        { nome: 'Campo 14', gid: '910840754' },
+        { nome: 'Campo 15', gid: '366928501' },
+        { nome: 'Campo 16', gid: '1037370305' },
+        { nome: 'Campo 17', gid: '434958283' },
+        { nome: 'Campo 18', gid: '1201144106' },
+        { nome: 'Campo 19', gid: '460027017' },
+        { nome: 'Campo 20', gid: '227897224' }
+      ];
+
+      let allRows = [];
+
+      function fetchAba(aba, onComplete) {
+        const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&gid=${aba.gid}&_=${Date.now()}`;
+        fetch(url)
+          .then(res => res.text())
+          .then(text => {
+            const json = JSON.parse(text.substring(47).slice(0, -2));
+            json.table.rows.forEach(r => {
+              r.c.push({ v: aba.nome });
+              allRows.push(r);
+            });
+            onComplete();
+          })
+          .catch(e => {
+            console.error('Erro a ler ' + aba.nome, e);
+            onComplete();
+          });
+      }
+
+      function fetchTodas(callback) {
+        allRows = [];
+        let count = 0;
+        abas.forEach(aba => {
+          fetchAba(aba, () => {
+            count++;
+            if (count === abas.length && typeof callback === "function") callback();
+          });
+        });
+      }
+
+      function formatarHora(cell) {
+        if (!cell || !cell.v) return '';
+        const match = /Date\((\d+),(\d+),(\d+),(\d+),(\d+)/.exec(cell.v);
+        if (!match) return cell.v;
+        const hora = String(match[4]).padStart(2, '0');
+        const minuto = String(match[5]).padStart(2, '0');
+        return `${hora}:${minuto}`;
+      }
+
+      function renderTable() {
+        const tbody = document.createElement("tbody");
+        let jogosSemResultado = [];
+
+        allRows.forEach(row => {
+          const numJ = row.c[0]?.v || '';
+          const dia = row.c[1]?.v || '';
+          const hora = formatarHora(row.c[2]);
+          const campoNome = row.c[row.c.length - 1]?.v || '';
+          const equipaA = row.c[4]?.v || '';
+          const equipaB = row.c[8]?.v || '';
+          const resultadoA = row.c[5]?.v?.toString().trim() || '';
+          const resultadoB = row.c[7]?.v?.toString().trim() || '';
+
+          if (campoNome === 'Campo 21') return;
+
+          if (!resultadoA && !resultadoB) {
+            jogosSemResultado.push([
+              numJ, dia, hora, campoNome, equipaA, '', 'X', '', equipaB
+            ]);
+          }
+        });
+
+        jogosSemResultado.sort((a, b) => {
+          const diaA = parseInt(a[1]) || 0;
+          const diaB = parseInt(b[1]) || 0;
+          const horaA = a[2].split(':').map(Number);
+          const horaB = b[2].split(':').map(Number);
+          const campoA = parseInt((a[3] || '').replace(/\D/g, '')) || 0;
+          const campoB = parseInt((b[3] || '').replace(/\D/g, '')) || 0;
+
+          if (diaA !== diaB) return diaA - diaB;
+          if (horaA[0] !== horaB[0]) return horaA[0] - horaB[0];
+          if (horaA[1] !== horaB[1]) return horaA[1] - horaB[1];
+          return campoA - campoB;
+        });
+
+        const tabela = document.createElement("table");
+        const thead = document.createElement("thead");
+        const trHead = document.createElement("tr");
+        ["N.º J.", "Dia", "Hora", "Campo", "Equipa A", "", "X", "", "Equipa B"].forEach(text => {
+          const th = document.createElement("th");
+          th.textContent = text;
+          trHead.appendChild(th);
+        });
+        thead.appendChild(trHead);
+        tabela.appendChild(thead);
+        tabela.appendChild(tbody);
+
+        jogosSemResultado.slice(0, 40).forEach(cols => {
+          const tr = document.createElement("tr");
+          cols.forEach(text => {
+            const td = document.createElement("td");
+            td.textContent = text;
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        });
+
+        document.querySelector(".calendario").appendChild(tabela);
+      }
+
+      function toggleMenu() {
+        const menu = document.getElementById("nav-menu");
+        menu.classList.toggle("active");
+      }
+
+      function atualizarJogos() {
+        const tabelaAntiga = document.querySelector(".calendario table");
+        if (tabelaAntiga) tabelaAntiga.remove();
+        fetchTodas(() => renderTable());
+      }
+
+      atualizarJogos();
+      setInterval(atualizarJogos, 120000);
+    </script>
+  </div>
+
+  <section class="patrocinadores-carousel">
+    <div class="carousel-track" id="carousel-track">
+      <a href="https://www.instagram.com/maribartorreira/" target="_blank"><img src="p_maribar.png" alt="Maribar"></a>
+      <!-- outros patrocinadores -->
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      &copy; Torneio de Voleibol de Praia no Maribar |
+      <a href="apresentacaoSabManha.html">📊 Apresentação Sabado Manhã</a> |
+      <a href="apresentacaoSab.html">📊 Apresentação Sabado</a> |
+      <a href="apresentacaoDom.html">📊 Apresentação Domingo</a> |
+      <a href="apresentacao.html">📊 Apresentação</a> |
+      Contacto: <a href="mailto:pedrofacarvalho@gmail.com">pedrofacarvalho@gmail.com</a>
+    </p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profile.php?id=100093335237350" target="_blank" aria-label="Facebook">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" width="24" height="24">
+      </a>
+      <a href="https://www.instagram.com/torneiomaribarvolley?igsh=NncxcXVhNWp2OTh6" target="_blank" aria-label="Instagram">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" width="24" height="24">
+      </a>
+    </div>
+  </footer>
+
+</body>
+</html>
