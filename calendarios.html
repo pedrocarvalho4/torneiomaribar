@@ -2,6 +2,15 @@
 <html lang="pt">
 
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9J18PX75N4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-9J18PX75N4');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Calendários & Resultados - Torneio Maribar</title>
@@ -11,8 +20,6 @@
 
 <body>
   <div class="calendario">
-
-
     <header>
       <nav>
         <h1 style="display: flex; align-items: center; gap: 10px;">
@@ -32,358 +39,297 @@
       </nav>
     </header>
 
-    <section class="submenu">
-      <h1>Calendários Provisórios e Resultados</h1>
-      <h3>Selecione o Torneio que pretende ver:</h3>
-      <ul>
-        <li><a href="c_masculino.html">Torneio Masculino</a></li>
-        <li><a href="c_feminino.html">Torneio Feminino</a></li>
-        <li><a href="c_mistos.html">Torneio Mistos</a></li>
-        <li><a href="c_sub16.html">Torneio Sub-16</a></li>
-        <li><a href="c_taca-masc.html">Taça Maribar Masculina</a></li>
-        <li><a href="c_taca-fem.html">Taça Maribar Feminina</a></li>
-        <li><a href="c_taca-mix.html">Taça Maribar Mista</a></li>
-      </ul>
-    </section>
+    <div style="text-align:center; padding: 50px 20px; font-family: sans-serif;">
+      <h1 style="color: #004080;">📢 Torneio Maribar 2025 Concluído</h1>
+      <p>O torneio já se realizou e ficam aqui as classificações finais dos vários torneios e taças!</p>
 
 
-    <h3>Ou procure aqui pela sua dupla</h3>
-    <p style="color: #444; font-weight: bold; margin-top: 10px;">
-      ℹ️ Para uma melhor visualização, rode o telemóvel para modo horizontal.
-    </p>
-
-    <div>
-      <label>Tipo (N.º J.):
-        <select id="filtroTipo">
-          <option value="">Todos</option>
-          <option value="MAS">Masculino</option>
-          <option value="FEM">Feminino</option>
-          <option value="MIX">Mistos</option>
-          <option value="JSub16">sub-16</option>
-        </select>
-      </label>
-
-      <label>Equipa A / B contém:
-        <input type="text" id="filtroEquipa" placeholder="ex: Dupla 1" />
-      </label>
-      <label>
-        <input type="checkbox" id="filtroPorRealizar" checked>
-        Mostrar apenas jogos por realizar
-      </label>
-
-      <button id="btnFiltrar">Aplicar Filtros</button>
+      <div class="torneios-container">
+        <div class="torneio-bloco">
+          <h2>Torneio Masculino</h2>
+          <h3>Classificação Final</h3>
+          <ol class="duplas-lista">
+            <li>1º - Luís Gomes / Pedro Santos</li>
+            <li>2º - Lourenço Afonso / Alexandre Afonso</li>
+            <li>3º - João Pimentel / João Costa</li>
+            <li>3º - Eduardo Assunção / Diogo Couto</li>
+            <li>5º - Pedro Silva / José Silva</li>
+            <li>5º - Fernando Silva / Tiago Sineiro</li>
+            <li>5º - José Menezes / Pedro Leal</li>
+            <li>5º - Diogo Borges/ Diogo Bento</li>
+            <li>9º - Viktor Danko / Yurii Zupko</li>
+            <li>9º - Danko Oleksandr / Kauan Carvalho</li>
+            <li>9º - André Conde / Gonçalo Forte</li>
+            <li>9º - Jorge Marques / Miguel Pedrosa</li>
+            <li>13º - Gonçalo Fonseca / Simão Carvalhal</li>
+            <li>13º - Francisco Amorim / David Moreira</li>
+            <li>13º - Pedro Patoilo / João Manero</li>
+            <li>13º - Cristian Dragos / Fernando Santos</li>
+          </ol>
+        </div>
+        <div class="torneio-bloco">
+          <h2>Torneio Feminino</h2>
+          <h3>Classificação Final</h3>
+          <ol class="duplas-lista">
+            <li>1º - Diana Simões / Inês Pato</li>
+            <li>2º - Ana Macedo / Mariana Moreira</li>
+            <li>3º - Eunice Xavier / Julia Silva</li>
+            <li>3º - Filipa Santos / Carolina gostynska</li>
+            <li>5º - Maria Corvo / Maria Corliano</li>
+            <li>5º - Maria Trigueiro / Laura Silva</li>
+            <li>7º - Inês Carneiro / Eduarda Augusto</li>
+            <li>7º - Catarina Martins / Margarida Cruz</li>
+          </ol>
+        </div>
+        <div class="torneio-bloco">
+          <h2>Torneio Misto</h2>
+          <h3>Classificação Final</h3>
+          <ol class="duplas-lista">
+            <li>1º - Laura Silva / Cristian Dragos</li>
+            <li>2º - Karolina Gostyńska / Pedro Patoilo</li>
+            <li>3º - Teresa Diaz / Jorge Cruz</li>
+            <li>3º - Eunice Xavier / Tiago Sineiro</li>
+            <li>5º - Sara Frazão / João Oliveira</li>
+            <li>5º - Filipa Santos / Misha</li>
+            <li>5º - Mariana Cardoso / João Pimentel</li>
+            <li>5º - Diana Simões / Gonçalo Forte</li>
+            <li>9º - Catarina Borges / Diogo Borges</li>
+            <li>9º - Maria Trigueiro / João Manero</li>
+            <li>9º - Catarina Martins / Evgheni Nacu</li>
+            <li>9º - Ana Macedo / Nuno Valente</li>
+            <li>13º - Mariana Moreira / Miguel Moreira</li>
+            <li>13º - Matilde Silva / Tomé Cardoso</li>
+            <li>13º - Maria Sá / Tomás Domingues</li>
+            <li>13º - Eva Reis / Simão Carvalhal</li>
+          </ol>
+        </div>
+        <div class="torneio-bloco">
+          <h2>Torneio Sub-16</h2>
+          <h3>Classificação Final</h3>
+          <ol class="duplas-lista">
+            <li>1º - Maria Azevedo / Leonor Alves</li>
+            <li>2º - Yanni Marsala / Nicoly Monteiro</li>
+            <li>3º - Daniela Chaves / Inês Nunes</li>
+            <li>4º - Inês Vilaça / Beatriz Fernandes</li>
+            <li>5º - Carol Duarte / Ana Alves</li>
+            <li>6º - Maria Santos / Margarida Leite</li>
+            <li>7º - Beatriz Cardoso / Margarida Pinto</li>
+            <li>8º - Leonor Rafael / Beatriz Gomes</li>
+          </ol>
+        </div>
+        <div class="torneio-bloco">
+          <h2>Taça Masculina</h2>
+          <h3>Classificação Final</h3>
+          <ol class="duplas-lista">
+            <li>1º - Jorge Cruz / Pedro Machado</li>
+            <li>2º - Tiago Ventura / Hugo Leão</li>
+            <li>3º - Ruben Santos / Tiago Edra</li>
+            <li>3º - Diogo Aguiar / João Neves</li>
+            <li>5º - Diogo Zenha / Ricardo Ferreira</li>
+            <li>5º - Francisco Roque / Tomás Domingues</li>
+            <li>7º - Mário Figueiredo / Hugo Ferreira</li>
+            <li>7º - Ricardo Silva / Bruno Santos</li>
+            <li>7º - João Pimentel / Filipe Cunha</li>
+            <li>7º - Samuel Patrão / Roberto Gil</li>
+            <li>7º - Evgheni Nacu / Mikhail Fedorinin</li>
+            <li>7º - João André / Dinis Melo</li>
+            <li>14º - Rafael Feliciano / Bruno Conde</li>
+            <li>14º - Carlos Rocha / Rodrigo Rocha</li>
+            <li>14º - Alexandre Miranda / Tomás Ramos</li>
+            <li>14º - Rodrigo Carvalho / Ricardo Sardinha</li>
+            <li>14º - Nuno Valente / Miguel Moreira</li>
+            <li>14º - Tiago Leite / Sergio Rodrigues</li>
+            <li>19º - Gonçalo Vieira / João Cabral</li>
+            <li>19º - Luís Sousa / José Oliveira</li>
+            <li>19º - Alexsandro Derneka / Leandro Derneka</li>
+            <li>19º - Nuno Abrantes / Nuno Ferreira</li>
+            <li>19º - Miguel Prado / Gonçalo Mota</li>
+            <li>19º - Vitor Bueno / Simão Ferreira</li>
+            <li>25º - Ricardo Neto / João Serra</li>
+            <li>25º - Tiago Lima / Guilherme Pinto</li>
+            <li>25º - Márcio Bernardo / Tiago Campos</li>
+            <li>25º - Miguel Madeira / Rafael Cruz</li>
+            <li>25º - Adriano Freitas / Joaquim Mariano</li>
+            <li>25º - João Alves / Bruno Lobo</li>
+            <li>25º - Paulo Henrique / Jorge Ribeiro</li>
+            <li>25º - Tomé Cardoso / Diogo Martins</li>
+            <li>25º - Tiago Figueiredo / Gilberto Santos</li>
+            <li>25º - Diogo Sousa / Pedro Carvalho</li>
+            <li>25º - Noé Vieira / Joao Vieira</li>
+            <li>25º - Guilherme Cruz / Flávio Cruz</li>
+            <li>37º - Antonio Pereira / Simão Pereira</li>
+            <li>37º - Joel Moreira / Carlos Silva</li>
+            <li>37º - Ricardo Barros / Tiago Barros</li>
+            <li>37º - Manuel Ferreira / Júlio Gouveia</li>
+            <li>37º - Gonçalo Alves / João Cardoso</li>
+            <li>37º - Marcelo Dias / Michael Gomes</li>
+            <li>37º - Dinis Duarte / Ni Duarte</li>
+            <li>37º - Tiago Carneiro / Daniel Soares</li>
+            <li>37º - José Maia / Pepe</li>
+            <li>37º - André Barata / Edmilson Tavares</li>
+            <li>37º - João Prado / Hugo Pinto</li>
+            <li>37º - João Oliveira / Tiago Batista</li>
+          </ol>
+        </div>
+        <div class="torneio-bloco">
+          <h2>Taça Feminina</h2>
+          <h3>Classificação Final</h3>
+          <ol class="duplas-lista">
+            <li>1º - Lara Liquito / Mafalda Marado</li>
+            <li>2º - Margarida Neto / Margarida Teixeira</li>
+            <li>3º - Inês Santos / Maria Ruivo</li>
+            <li>3º - Iara Oliveira / Carla Gonçalves</li>
+            <li>5º - Evelynne Ribas / Mayla Araújo</li>
+            <li>5º - Ana Barros / Marta Sá</li>
+            <li>7º - Joana Sousa / Carolina Almeida</li>
+            <li>7º - Cristiana Costa / Maria Couto</li>
+            <li>7º - Lia Marinho / Luz Marinho</li>
+            <li>10º - Raquel Abrantes / Joana Silva</li>
+            <li>10º - Natália Leite / Beatriz Bom</li>
+            <li>10º - Matilde Reis / Maria Sá</li>
+            <li>13º - Matilde Silva / Helena Dias</li>
+            <li>13º - Filipa Baltazar / Joana Cunha</li>
+            <li>13º - Marta Almeida / Inês Rebelo</li>
+            <li>13º - Catarina Raoul / Sara Frazão</li>
+            <li>13º - Matilde Reis / Maria Sá</li>
+            <li>18º - Mariana Correia / Madalena Sérgio</li>
+            <li>18º - Patrícia Martins / Joana Rodrigues</li>
+            <li>18º - Carolina Tavares / Alice Silva</li>
+            <li>18º - Raquel Lima / Rita Lima</li>
+            <li>18º - Miriam Dias / Maria Ribera</li>
+            <li>18º - Maria Alves / Bruna Ferreira</li>
+            <li>18º - Marisa Bourgard / Joana Antunes</li>
+          </ol>
+        </div>
+        <div class="torneio-bloco">
+          <h2>Taça Mista</h2>
+          <h3>Classificação Final</h3>
+          <ol class="duplas-lista">
+            <li>1º - Mariana Correia / Fernando Santos</li>
+            <li>2º - Johanna Hietala / Samuel Patrao</li>
+            <li>3º - Iara Oliveira / Diogo bento</li>
+            <li>3º - Joana Antunes / Dinis Melo</li>
+            <li>5º - Leonor Rilho / Gabriel Rilho</li>
+            <li>5º - Vanessa Pinto / Marcos Figueiredo</li>
+            <li>7º - Patricia Martins / Ricardo Neto</li>
+            <li>7º - Mariana Garcia / Tiago Figueiredo</li>
+            <li>7º - Filipa Ferreira / João Pimentel</li>
+            <li>7º - Maria Ribera / João Cardoso</li>
+            <li>7º - Leonor Teixeira / Rafael Feliciano</li>
+            <li>7º - Margarida Cruz / Diogo Ferreira</li>
+            <li>14º - Laura Pires / Marcio Bernardo</li>
+            <li>14º - Catarina Raoul / João André</li>
+            <li>14º - Maria Alves / Diogo Martins</li>
+            <li>14º - Filipa Baltazar / Edmilson Tavares</li>
+            <li>14º - Helena Dias / Miguel Prado</li>
+            <li>14º - Miriam Dias / Diogo Zenha</li>
+            <li>19º - Sílvia Ribeiro / Rodrigo Rocha</li>
+            <li>19º - Inês Santos / Rodrigo Carvalho</li>
+            <li>19º - Sofia Augusto / António Aldir</li>
+            <li>19º - Margarida Teixeira / João Serra</li>
+            <li>19º - Carol Duarte / Ni Duarte</li>
+            <li>19º - Beatriz Gomes / Mario Figueiredo</li>
+            <li>25º - Inês Pato / Nuno Pires</li>
+            <li>25º - Raquel Lima / Gonçalo Mota</li>
+            <li>25º - Margarida Neto / André Barata</li>
+            <li>25º - Matilde Reis / Francisco Roque</li>
+            <li>25º - Carolina Tavares / Ricardo Silva</li>
+            <li>25º - Núria Benoliel / Joaquim Mariano</li>
+            <li>25º - Joana Cunha / Roberto Gil</li>
+            <li>25º - Mariana Pais / Valter Rodrigues</li>
+            <li>25º - Bruna Ferreira / Ricardo Ferreira</li>
+            <li>25º - Eduarda Augusto / Pedro Pereira</li>
+            <li>25º - Rita Lima / Guilherme Pinto</li>
+            <li>25º - Madalena Tenreiro / Noé Vieira</li>
+            <li>37º - Pedro Carvalho / Diogo Vilaça</li>
+            <li>37º - Rui Ribeiro / Miguel Ribeiro</li>
+            <li>37º - Inês Carneiro / Rodrigo Fontinha</li>
+            <li>37º - Ângela Conde / André Conde</li>
+            <li>37º - Zita Lucas / Lourenço Afonso</li>
+            <li>37º - Raquel Abrantes / Nuno Abrantes</li>
+            <li>37º - Sofia Soares / Hugo Pinto</li>
+            <li>37º - Maria Cruz / Luis Marques</li>
+            <li>37º - Ana Silva / José Maia</li>
+            <li>37º - Maria Corliano / Fernando Cortes</li>
+            <li>37º - Natalia Leite / João Machado</li>
+            <li>37º - Alice Silva / Bruno Santos</li>
+          </ol>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <div id="avisoFiltro"></div>
+  <script>
+    const sheetId = "1tCgya4djEggY5RZ5_5tF2sJP-OA-NfAIBRmh5m85Z_0";
 
-    <table>
-      <thead>
-        <tr>
-          <th>N.º J.</th>
-          <th>Dia</th>
-          <th>Hora</th>
-          <th>Campo</th>
-          <th>Equipa A</th>
-          <th></th>
-          <th>X</th>
-          <th></th>
-          <th>Equipa B</th>
-        </tr>
-      </thead>
-      <tbody id="tabela"></tbody>
-    </table>
+    function carregarDuplas(gid, listaId, totalId) {
+      const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&gid=${gid}`;
+      fetch(url)
+        .then(res => res.text())
+        .then(text => {
+          const json = JSON.parse(text.substring(47).slice(0, -2));
+          const duplasList = document.getElementById(listaId);
+          const totalSpan = document.getElementById(totalId);
 
-    <hr style="margin: 40px 0;">
-
-    <h3>Ou veja os jogos por campo</h3>
-    <div style="margin-bottom: 15px;">
-      <label>Selecionar Campo:
-        <select id="campoFiltroSolo">
-          <option value="">Todos</option>
-          <option value="Campo 1">Campo 1</option>
-          <option value="Campo 2">Campo 2</option>
-          <option value="Campo 3">Campo 3</option>
-          <option value="Campo 4">Campo 4</option>
-          <option value="Campo 5">Campo 5</option>
-          <option value="Campo 6">Campo 6</option>
-          <option value="Campo 7">Campo 7</option>
-          <option value="Campo 8">Campo 8</option>
-          <option value="Campo 9">Campo 9</option>
-          <option value="Campo 10">Campo 10</option>
-          <option value="Campo 11">Campo 11</option>
-          <option value="Campo 12">Campo 12</option>
-          <option value="Campo 13">Campo 13</option>
-          <option value="Campo 14">Campo 14</option>
-          <option value="Campo 15">Campo 15</option>
-          <option value="Campo 16">Campo 16</option>
-          <option value="Campo 17">Campo 17</option>
-          <option value="Campo 18">Campo 18</option>
-          <option value="Campo 19">Campo 19</option>
-          <option value="Campo 20">Campo 20</option>
-          <option value="Campo 21">Campo 21</option>
-        </select>
-      </label>
-    </div>
-
-    <table>
-      <thead>
-        <tr>
-          <th>N.º J.</th>
-          <th>Dia</th>
-          <th>Hora</th>
-          <th>Campo</th>
-          <th>Equipa A</th>
-          <th></th>
-          <th>X</th>
-          <th></th>
-          <th>Equipa B</th>
-        </tr>
-      </thead>
-      <tbody id="tabelaCampo"></tbody>
-    </table>
-
-
-
-    <script>
-      const sheetID = '1W7vYayCEYez1C1DhuVTb5EyxEbZoZUXAdAEXjL411MI';
-      const abas = [
-        {nome: 'Campo 1', gid: '0'},
-        {nome: 'Campo 2', gid: '1748251367'},
-        {nome: 'Campo 3', gid: '88718845'},
-        {nome: 'Campo 4', gid: '1262552338'},
-        {nome: 'Campo 5', gid: '691995695'},
-        {nome: 'Campo 6', gid: '1559184801'},
-        {nome: 'Campo 7', gid: '820424930'},
-        {nome: 'Campo 8', gid: '236323837'},
-        {nome: 'Campo 9', gid: '679884945'},
-        {nome: 'Campo 10', gid: '537214771'},
-        {nome: 'Campo 11', gid: '1443533077'},
-        {nome: 'Campo 12', gid: '869322168'},
-        {nome: 'Campo 13', gid: '1124916512'},
-        {nome: 'Campo 14', gid: '910840754'},
-        {nome: 'Campo 15', gid: '366928501'},
-        {nome: 'Campo 16', gid: '1037370305'},
-        {nome: 'Campo 17', gid: '434958283'},
-        {nome: 'Campo 18', gid: '1201144106'},
-        {nome: 'Campo 19', gid: '460027017'},
-        {nome: 'Campo 20', gid: '227897224'},
-        {nome: 'Campo 21', gid: '1076126343'}
-      ];
-
-      let allRows = [];
-
-      function fetchAba(aba, onComplete) {
-        const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&gid=${aba.gid}&_=${Date.now()}`;
-
-        fetch(url)
-          .then(res => res.text())
-          .then(text => {
-            const json = JSON.parse(text.substring(47).slice(0, -2));
-            json.table.rows.forEach(r => {
-              r.c.push({v: aba.nome});
-              allRows.push(r);
-            });
-            onComplete();
-          })
-          .catch(e => {
-            console.error('Erro a ler ' + aba.nome, e);
-            onComplete();
-          });
-      }
-
-      function fetchTodas(callback) {
-        allRows = []; // limpar os dados antigos
-        let count = 0;
-        abas.forEach(aba => {
-          fetchAba(aba, () => {
-            count++;
-            if (count === abas.length) {
-              document.getElementById('btnFiltrar').disabled = false;
-              if (typeof callback === "function") callback(); // aplica os filtros só depois
-            }
-          });
-        });
-      }
-
-
-      function formatarHora(cell) {
-        if (!cell || !cell.v) return '';
-        const match = /Date\((\d+),(\d+),(\d+),(\d+),(\d+)/.exec(cell.v);
-        if (!match) return cell.v;
-        const hora = String(match[4]).padStart(2, '0');
-        const minuto = String(match[5]).padStart(2, '0');
-        return `${hora}:${minuto}`;
-      }
-
-      function renderTable() {
-        const tipoFiltro = document.getElementById('filtroTipo').value.trim().toUpperCase();
-        const equipaFiltro = document.getElementById('filtroEquipa').value.trim().toLowerCase();
-        const mostrarPorRealizar = document.getElementById('filtroPorRealizar').checked;
-
-        const tbody = document.getElementById('tabela');
-        const aviso = document.getElementById('avisoFiltro');
-        tbody.innerHTML = '';
-        aviso.textContent = '';
-
-        let linhasFiltradas = [];
-
-        allRows.forEach(row => {
-          const numJ = row.c[0]?.v || '';
-          const dia = row.c[1]?.v || '';
-          const hora = formatarHora(row.c[2]);
-          const campoNome = row.c[row.c.length - 1]?.v || '';
-          const equipaA = row.c[4]?.v || '';
-          const equipaB = row.c[8]?.v || '';
-
-          const matchTipo = !tipoFiltro || numJ.toUpperCase().includes(tipoFiltro);
-          const matchEquipa =
-            !equipaFiltro ||
-            equipaA.toLowerCase().includes(equipaFiltro) ||
-            equipaB.toLowerCase().includes(equipaFiltro);
-
-          let incluir = matchTipo && matchEquipa;
-
-          if (incluir && mostrarPorRealizar) {
-            const posicaoA = row.c[5]?.v?.toString().trim() || "";
-            const posicaoB = row.c[7]?.v?.toString().trim() || "";
-            if (posicaoA !== "" || posicaoB !== "") {
-              incluir = false;
-            }
+          let maxDuplas = 0;
+          switch (listaId) {
+            case "duplas-list-masc":
+              maxDuplas = 64;
+              break;
+            case "duplas-list-fem":
+              maxDuplas = 32;
+              break;
+            case "duplas-list-mix":
+              maxDuplas = 64;
+              break;
+            case "duplas-list-sub16":
+              maxDuplas = 8;
+              break;
           }
 
-          if (incluir) {
-            linhasFiltradas.push([
-              numJ,
-              dia,
-              hora,
-              campoNome,
-              equipaA,
-              row.c[5]?.v || '', // Coluna F - resultado equipa A
-              'X',
-              row.c[7]?.v || '', // Coluna H - resultado equipa B
-              equipaB
-            ]);
+          const totalDuplas = json.table.rows
+            .slice(1) // Ignora a primeira linha (possivelmente fórmula)
+            .filter(r => r.c[1]?.v && r.c[2]?.v).length;
+
+          if (totalDuplas) {
+            totalSpan.textContent = `(${totalDuplas} de ${maxDuplas} duplas)`;
           }
-        });
 
-        const limite = 20;
-        linhasFiltradas.sort((a, b) => {
-          const diaA = parseInt(a[1]) || 0;
-          const diaB = parseInt(b[1]) || 0;
-          const horaA = a[2].split(':').map(Number);
-          const horaB = b[2].split(':').map(Number);
-          if (diaA !== diaB) return diaA - diaB;
-          if (horaA[0] !== horaB[0]) return horaA[0] - horaB[0];
-          return horaA[1] - horaB[1];
-        });
+          json.table.rows.forEach(row => {
+            const numero = row.c[0]?.v;
+            const atleta1 = row.c[1]?.v || "";
+            const atleta2 = row.c[2]?.v || "";
 
-        const mostrarLinhas = linhasFiltradas.slice(0, limite);
+            if (!numero) return;
 
-        mostrarLinhas.forEach(cols => {
-          const tr = document.createElement('tr');
-          cols.forEach(text => {
-            const td = document.createElement('td');
-            td.textContent = text;
-            tr.appendChild(td);
+            const li = document.createElement("li");
+            li.textContent = `${atleta1} / ${atleta2}`;
+            duplasList.appendChild(li);
           });
-          tbody.appendChild(tr);
+        })
+        .catch(e => {
+          document.getElementById(listaId).innerHTML = "<li>Erro ao carregar as duplas.</li>";
+          console.error(e);
         });
+    }
 
-        if (linhasFiltradas.length > limite) {
-          aviso.textContent = `⚠️ Foram encontrados ${linhasFiltradas.length} jogos, mas só os primeiros ${limite} estão a ser mostrados. Refine os filtros para ver resultados mais específicos.`;
-        }
+    // Para já, usa o mesmo gid nas 3 secções. Depois só trocar aqui pelos corretos.
+    const gidMasculino = "1135744744";
+    const gidFeminino = "1675225089";
+    const gidMisto = "49743314";
+    const gidSub16 = "20547463";
 
-        console.log(`[INFO] Filtro aplicado: tipo='${tipoFiltro}', equipa='${equipaFiltro}' (${linhasFiltradas.length} resultados)`);
-      }
-
-
-
-      document.getElementById('btnFiltrar').addEventListener('click', () => {
-        console.log('[INFO] Botão "Aplicar Filtros" clicado');
-        document.getElementById('btnFiltrar').disabled = true;
-        fetchTodas(() => {
-          renderTable();
-          renderTableCampo();
-        });
-      });
+    carregarDuplas(gidMasculino, "duplas-list-masc", "total-duplas-masc");
+    carregarDuplas(gidFeminino, "duplas-list-fem", "total-duplas-fem");
+    carregarDuplas(gidMisto, "duplas-list-mix", "total-duplas-mix");
+    carregarDuplas(gidSub16, "duplas-list-sub16", "total-duplas-sub16");
+    function toggleMenu() {
+      const menu = document.getElementById("nav-menu");
+      menu.classList.toggle("active");
+    }
+  </script>
 
 
-      document.getElementById('btnFiltrar').disabled = true;
-      fetchTodas();
-
-      document.getElementById('filtroTipo').addEventListener('change', () => {
-        renderTable();
-      });
-
-      document.getElementById('filtroPorRealizar').addEventListener('change', () => {
-        renderTable();
-      });
-      function toggleMenu() {
-        const menu = document.getElementById("nav-menu");
-        menu.classList.toggle("active");
-      }
-
-      function renderTableCampo() {
-        const filtroCampo = document.getElementById('campoFiltroSolo').value;
-
-        const tbody = document.getElementById('tabelaCampo');
-        tbody.innerHTML = '';
-
-        let linhasFiltradas = [];
-
-        allRows.forEach(row => {
-          const numJ = row.c[0]?.v || '';
-          const dia = row.c[1]?.v || '';
-          const hora = formatarHora(row.c[2]);
-          const campoNome = row.c[row.c.length - 1]?.v || '';
-          const equipaA = row.c[4]?.v || '';
-          const equipaB = row.c[8]?.v || '';
-
-          if (!filtroCampo || campoNome === filtroCampo) {
-            linhasFiltradas.push([
-              numJ,
-              dia,
-              hora,
-              campoNome,
-              equipaA,
-              row.c[5]?.v || '',
-              'X',
-              row.c[7]?.v || '',
-              equipaB
-            ]);
-          }
-        });
-
-        linhasFiltradas.sort((a, b) => {
-          const diaA = parseInt(a[1]) || 0;
-          const diaB = parseInt(b[1]) || 0;
-          const horaA = a[2].split(':').map(Number);
-          const horaB = b[2].split(':').map(Number);
-          if (diaA !== diaB) return diaA - diaB;
-          if (horaA[0] !== horaB[0]) return horaA[0] - horaB[0];
-          return horaA[1] - horaB[1];
-        });
-        let primeiroSemResultadoMarcado = false;
-        linhasFiltradas.forEach(cols => {
-          const tr = document.createElement('tr');
-          const semResultado = (!cols[5] && !cols[7]);
-
-          if (semResultado && !primeiroSemResultadoMarcado) {
-            tr.classList.add('primeiro-sem-resultado');
-            primeiroSemResultadoMarcado = true;
-          }
-          cols.forEach(text => {
-            const td = document.createElement('td');
-            td.textContent = text;
-            tr.appendChild(td);
-          });
-          tbody.appendChild(tr);
-        });
-      }
-      document.getElementById('campoFiltroSolo').addEventListener('change', () => {
-        renderTableCampo();
-      });
-    </script>
   </div>
   <section class="patrocinadores-carousel">
     <div class="carousel-track" id="carousel-track">
@@ -465,12 +411,14 @@
 
 </body>
 <footer>
+
   <p>
     &copy; Torneio de Voleibol de Praia no Maribar |
     <a href="apresentacaoSabManha.html">📊 Apresentação Sabado Manha</a> |
     <a href="apresentacaoSab.html">📊 Apresentação Sabado</a> |
     <a href="apresentacaoDom.html">📊 Apresentação Domingo</a> |
-    <a href="calendarios2.html">📊 Calendarios2</a> |
+    <a href="apresentacao.html">📊 Apresentação</a> |
+    <a href="calendarios1.html">📊 Calendario</a> |
     Contacto: <a href="mailto:pedrofacarvalho@gmail.com">pedrofacarvalho@gmail.com</a>
   </p>
   <div class="social-icons">
